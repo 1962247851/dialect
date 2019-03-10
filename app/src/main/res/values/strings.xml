@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">听乡</string>
+    <string name="title_home">首页</string>
+    <string name="title_dubbing">配音</string>
+    <string name="title_more">更多</string>
+    <string name="title_audition">听音</string>
+    <string name="title_compare">比音</string>
+    <string name="title_fragment_discuss_title">大城市乡音何在</string>
+    <string name="title_fragment_discuss_content">快速发展的北上广,是否还有这座城市独有的乡音</string>
+</resources>
