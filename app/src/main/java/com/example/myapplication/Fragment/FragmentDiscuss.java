@@ -15,21 +15,34 @@ import android.widget.ImageView;
 
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterDiscuss;
 import com.example.myapplication.R;
-import com.robinhood.ticker.TickerUtils;
-import com.robinhood.ticker.TickerView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
-@SuppressLint("ValidFragment")
 public class FragmentDiscuss extends Fragment {
     private static final String TAG = "FragmentDiscuss----->";
     private RecyclerView mRV;
+    private SmartRefreshLayout mSRL;
     private MyAdapterDiscuss adapterDiscuss;
-    private IOnClickListener onClickListener;
+    private IOnClickListener iOnClickListener;
+    private IOnRefreshLoadMoreListener iOnRefreshLoadMoreListener;
     private ImageView mIV;
+
+    public FragmentDiscuss() {
+    }
 
     @SuppressLint("ValidFragment")
     public FragmentDiscuss(IOnClickListener i) {
-        this.onClickListener = i;
+        this.iOnClickListener = i;
     }
+
+    @SuppressLint("ValidFragment")
+    public FragmentDiscuss(IOnClickListener i, IOnRefreshLoadMoreListener iOnRefreshLoadMoreListener) {
+        this.iOnClickListener = i;
+        this.iOnRefreshLoadMoreListener = iOnRefreshLoadMoreListener;
+    }
+
 
     @Nullable
     @Override
@@ -43,7 +56,7 @@ public class FragmentDiscuss extends Fragment {
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickListener.OnClick(v);
+                iOnClickListener.OnClick(v);
             }
         };
         adapterDiscuss = new MyAdapterDiscuss(getContext(), new MyAdapterDiscuss.IOnDiscussClickListener() {
@@ -70,14 +83,33 @@ public class FragmentDiscuss extends Fragment {
         });
         mIV = view.findViewById(R.id.imageView_fragment_discuss);
         mRV = view.findViewById(R.id.RecyclerView_fragment_discuss);
+        mSRL = view.findViewById(R.id.smartRefreshLayout_fragment_discuss);
         mRV.setLayoutManager(new LinearLayoutManager(getContext()));
         mRV.setAdapter(adapterDiscuss);
 
         //设置监听事件需要在activity中实现接口
         mIV.setOnClickListener(clickListener);
+        mSRL.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                iOnRefreshLoadMoreListener.OnRefresh(refreshLayout);
+            }
+        });
+        mSRL.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                iOnRefreshLoadMoreListener.OnLoadMore(refreshLayout);
+            }
+        });
     }
 
     public interface IOnClickListener {
         void OnClick(View view);
+    }
+
+    public interface IOnRefreshLoadMoreListener {
+        void OnRefresh(RefreshLayout refreshLayout);
+
+        void OnLoadMore(RefreshLayout refreshLayout);
     }
 }

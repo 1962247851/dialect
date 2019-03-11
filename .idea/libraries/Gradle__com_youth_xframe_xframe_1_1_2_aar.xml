@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.youth.xframe:xframe:1.1.2@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/xframe-1.1.2.aar/02efb65b0bcedb9ba7945e23acb80fac/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/xframe-1.1.2.aar/02efb65b0bcedb9ba7945e23acb80fac/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/xframe-1.1.2.aar/02efb65b0bcedb9ba7945e23acb80fac/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.youth.xframe/xframe/1.1.2/ad01d1b6a76a00a890dd58735740774cd0048b8c/xframe-1.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -7,4 +7,7 @@
     <string name="title_compare">比音</string>
     <string name="title_fragment_discuss_title">大城市乡音何在</string>
     <string name="title_fragment_discuss_content">快速发展的北上广,是否还有这座城市独有的乡音</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

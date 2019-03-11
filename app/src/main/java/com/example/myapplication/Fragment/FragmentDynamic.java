@@ -14,17 +14,33 @@ import android.view.ViewGroup;
 
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterDynamic;
 import com.example.myapplication.R;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.youth.banner.Banner;
 
-@SuppressLint("ValidFragment")
 public class FragmentDynamic extends Fragment {
     private static final String TAG = "FragmentDynamic----->";
     private RecyclerView mRV;
+    private SmartRefreshLayout mSRL;
+    private IOnRefreshLoadMoreListener iOnRefreshLoadMoreListener;
+    private Banner mB;
     private MyAdapterDynamic adapterDynamic;
     private IOnClickListener iOnClickListener;
+
+    public FragmentDynamic() {
+    }
 
     @SuppressLint("ValidFragment")
     public FragmentDynamic(IOnClickListener i) {
         this.iOnClickListener = i;
+    }
+
+    @SuppressLint("ValidFragment")
+    public FragmentDynamic(IOnClickListener i, IOnRefreshLoadMoreListener iOnRefreshLoadMoreListener) {
+        this.iOnClickListener = i;
+        this.iOnRefreshLoadMoreListener = iOnRefreshLoadMoreListener;
     }
 
     @Nullable
@@ -74,12 +90,36 @@ public class FragmentDynamic extends Fragment {
             }
         });
         mRV = view.findViewById(R.id.recyclerView_fragment_dynamic);
+        mB = view.findViewById(R.id.banner_fragment_dynamic);
+        mSRL = view.findViewById(R.id.smartRefreshLayout_fragment_dynamic);
+
         mRV.setLayoutManager(new LinearLayoutManager(getContext()));
         mRV.setAdapter(adapterDynamic);
+
+        //设置监听器
+        mSRL.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                iOnRefreshLoadMoreListener.OnRefresh(refreshLayout);
+            }
+        });
+        mSRL.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                iOnRefreshLoadMoreListener.OnLoadMore(refreshLayout);
+            }
+        });
+        mB.setOnClickListener(onClickListener);
     }
 
 
     public interface IOnClickListener {
         void OnClick(View view);
+    }
+
+    public interface IOnRefreshLoadMoreListener {
+        void OnRefresh(RefreshLayout refreshLayout);
+
+        void OnLoadMore(RefreshLayout refreshLayout);
     }
 }

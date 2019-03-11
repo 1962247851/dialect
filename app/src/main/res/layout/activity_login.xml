@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/imageButton_login_exit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:tooltipText="退出" />
+
+    <ImageView
+        android:id="@+id/imageView_login_logo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/imageButton_login_exit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/materialEditText_login_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView_login_logo"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:hint="用户名"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/colorGrayText"
+        app:met_baseColor="@color/colorBlackText"
+        app:met_clearButton="true"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="用户名"
+        app:met_maxCharacters="10"
+        app:met_singleLineEllipsis="true"
+        app:met_underlineColor="@color/colorGrayText" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/materialEditText_login_user_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/materialEditText_login_user_name"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:textColor="@color/colorGrayText"
+        app:met_baseColor="@color/colorBlackText"
+        app:met_clearButton="true"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelAlwaysShown="false"
+        app:met_floatingLabelText="密码"
+        app:met_maxCharacters="14"
+        app:met_minCharacters="6"
+        app:met_singleLineEllipsis="true"
+        app:met_underlineColor="@color/colorGrayText" />
+
+
+    <Button
+        android:id="@+id/button_login_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/materialEditText_login_user_password"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:text="登录"
+        android:textColor="@color/colorBlackText" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_login_login"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button_login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户注册"
+            android:textColor="@color/colorBlackText" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="20dp"
+            android:background="@color/colorGrayText" />
+
+        <Button
+            android:id="@+id/button_login_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="忘记密码"
+            android:textColor="@color/colorBlackText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="快捷登录"
+            android:textColor="@color/colorBlackText" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:textSize="0sp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="30dp" />
+
+            <RadioButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="30dp" />
+
+            <RadioButton
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+</RelativeLayout>

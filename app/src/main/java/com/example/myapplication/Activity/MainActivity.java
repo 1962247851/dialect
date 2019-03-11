@@ -4,36 +4,24 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
-import com.example.myapplication.Adapter.RecyclerView.MyAdapterDiscuss;
-import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapter;
-import com.example.myapplication.Fragment.FragmentDiscover;
-import com.example.myapplication.Fragment.FragmentDiscuss;
-import com.example.myapplication.Fragment.FragmentDynamic;
+import com.example.myapplication.Fragment.DubbingFragment;
+import com.example.myapplication.Fragment.MainFragment;
 import com.example.myapplication.R;
-import com.flyco.tablayout.SlidingTabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity----->";
 
+    private FragmentManager fragmentManager;
+    private Fragment currentFragment;
     private BottomNavigationView navigation;
-    private SlidingTabLayout mTL;
-    private List<Fragment> fragments = new ArrayList<>();
-    private ViewPager mVP;
-    private MyFragmentPagerAdapter pagerAdapter;
-    private Button mBtnUserHead, mBtnSearch;
+    private DubbingFragment.IOnClickListener iOnClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,96 +35,93 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_main);
         navigation = findViewById(R.id.navigation_main);
-        mBtnUserHead = findViewById(R.id.button_main_user_head);
-        mBtnSearch = findViewById(R.id.button_main_search);
-        mTL = findViewById(R.id.tabLayout_main);
-        mVP = findViewById(R.id.viewPager_main);
-        FragmentDiscuss.IOnClickListener iOnClickListener = new FragmentDiscuss.IOnClickListener() {
-            @Override
-            public void OnClick(View view) {
-                switch (view.getId()) {
-                    case R.id.imageView_fragment_discuss:
-                        Log.e(TAG, "OnClick: ImageView");
-                        break;
-                }
-            }
-        };
-
-        FragmentDiscover.IOnClickListener iOnClickListener1 = new FragmentDiscover.IOnClickListener() {
-            @Override
-            public void OnClick(View view) {
-                switch (view.getId()) {
-                    case R.id.banner_fragment_discover:
-                        Log.e(TAG, "OnClick: banner");
-                        break;
-                }
-            }
-        };
-
-        FragmentDynamic.IOnClickListener iOnClickListener2 = new FragmentDynamic.IOnClickListener() {
-            @Override
-            public void OnClick(View view) {
-                switch (view.getId()) {
-                    case R.id.banner_fragment_dynamic:
-                        Log.e(TAG, "OnClick: banner");
-                        break;
-                }
-            }
-        };
-        FragmentDiscuss fragmentDiscuss = new FragmentDiscuss(iOnClickListener);
-        FragmentDiscover fragmentDiscover = new FragmentDiscover(iOnClickListener1);
-        FragmentDynamic fragmentDynamic = new FragmentDynamic(iOnClickListener2);
-
-        fragments.add(fragmentDiscuss);
-        fragments.add(fragmentDiscover);
-        fragments.add(fragmentDynamic);
-        pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragments);
-        mVP.setAdapter(pagerAdapter);
-        mTL.setViewPager(mVP);
+        MainFragment mainFragment = new MainFragment();
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.frameLayout_main, mainFragment, MainFragment.FragmentTag).commitAllowingStateLoss();
+        currentFragment = mainFragment;
     }
 
     //设置监听事件
     private void initListener() {
-        MyOnClick myOnClick = new MyOnClick();
-        mBtnUserHead.setOnClickListener(myOnClick);
-        mBtnSearch.setOnClickListener(myOnClick);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navigation_home:
-                        Log.e(TAG, "onNavigationItemSelected: Home");
+                        switchFragment(MainFragment.FragmentTag);
                         return true;
                     case R.id.navigation_dubbing:
-                        Log.e(TAG, "onNavigationItemSelected: Dubbing");
+                        switchFragment(DubbingFragment.FragmentTag);
                         return true;
                     case R.id.navigation_more:
                         Log.e(TAG, "onNavigationItemSelected: More");
+                        // TODO: 2019/3/11
                         return true;
                     case R.id.navigation_audition:
                         Log.e(TAG, "onNavigationItemSelected: Audition");
+                        // TODO: 2019/3/11
                         return true;
                     case R.id.navigation_compare:
                         Log.e(TAG, "onNavigationItemSelected: Compare");
+                        // TODO: 2019/3/11
                         return true;
                 }
                 return false;
             }
         });
+        iOnClickListener = new DubbingFragment.IOnClickListener() {
+            @Override
+            public void OnClick(View view) {
+                switch (view.getId()) {
+                    case R.id.textVIew_dubbing_count_down_num:
+                        // TODO: 2019/3/11
+                        Log.e(TAG, "onClick: count down num");
+                        break;
+                    case R.id.imageButton_dubbing_back:
+                        // TODO: 2019/3/11
+                        Log.e(TAG, "onClick: back");
+                        break;
+                    case R.id.imageButton_dubbing_restart:
+                        // TODO: 2019/3/11
+                        Log.e(TAG, "onClick: restart");
+                        break;
+                    case R.id.imageButton_dubbing_start:
+                        // TODO: 2019/3/11
+                        Log.e(TAG, "onClick: start");
+                        break;
+                    case R.id.imageButton_dubbing_finish:
+                        // TODO: 2019/3/11
+                        Log.e(TAG, "onClick: finish");
+                        break;
+                }
+            }
+        };
     }
 
-    //重写点击方法
-    private class MyOnClick implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.button_main_user_head:
-                    Log.e(TAG, "onClick: User Head");
-                    break;
-                case R.id.button_main_search:
-                    Log.e(TAG, "onClick: Search");
-                    break;
+    //切换Fragment
+    private void switchFragment(String currentFragmentTag) {
+        Fragment fragment = null;
+        switch (currentFragmentTag) {
+            case MainFragment.FragmentTag:
+                fragment = fragmentManager.findFragmentByTag(currentFragmentTag);
+                if (fragment == null) {
+                    fragment = new MainFragment();
+                }
+                break;
+            case DubbingFragment.FragmentTag:
+                fragment = fragmentManager.findFragmentByTag(currentFragmentTag);
+                if (fragment == null) {
+                    fragment = new DubbingFragment(iOnClickListener);
+                }
+                break;
+        }
+        if (currentFragment != fragment) {
+            if (!fragment.isAdded()) {
+                fragmentManager.beginTransaction().hide(currentFragment).add(R.id.frameLayout_main, fragment).commitAllowingStateLoss();
+            } else {
+                fragmentManager.beginTransaction().hide(currentFragment).show(fragment).commitAllowingStateLoss();
             }
+            currentFragment = fragment;
         }
     }
 }
