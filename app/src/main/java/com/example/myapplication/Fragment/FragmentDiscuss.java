@@ -63,6 +63,7 @@ public class FragmentDiscuss extends Fragment {
             @Override
             public void OnClick(View view) {
                 switch (view.getId()) {
+                    // TODO: 2019/3/12  
                     case R.id.imageButton_recycler_discover_user_head:
                         Log.e(TAG, "OnClick: user head");
                         break;
@@ -77,6 +78,9 @@ public class FragmentDiscuss extends Fragment {
                         break;
                     case R.id.tickerView_recycler_discuss_good_num:
                         Log.e(TAG, "OnClick: good num");
+                        break;
+                    case R.id.cardView_recycler_view_discuss:
+                        Log.e(TAG, "OnClick: card view");
                         break;
                 }
             }

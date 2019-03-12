@@ -1,91 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardView_recycler_view_dynamic"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:orientation="vertical">
-
+    android:layout_margin="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
-        android:id="@+id/linearLayout_recycler_dynamic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <ImageButton
-            android:id="@+id/imageButton_recycler_dynamic_user_head"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
 
         <LinearLayout
-            android:id="@+id/linearLayout_recycler_discuss"
+            android:id="@+id/linearLayout_recycler_dynamic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/imageButton_recycler_dynamic_user_head"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_recycler_discuss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_recycler_dynamic_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名"
+                    android:textColor="@color/colorBlackText"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView_recycler_dynamic_user_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:maxLines="2"
+                    android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView_recycler_dynamic"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/colorPrimary"
+            android:foreground="?android:attr/selectableItemBackground" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="end">
+
+            <ImageButton
+                android:id="@+id/imageButton_recycler_dynamic_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:tooltipText="评论" />
 
             <TextView
-                android:id="@+id/textView_recycler_dynamic_user_name"
+                android:id="@+id/textView_recycler_dynamic_comment_num"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="用户名"
-                android:textColor="@color/colorBlackText"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="99"
+                android:textColor="@color/colorGrayText" />
 
-            <TextView
-                android:id="@+id/textView_recycler_dynamic_user_content"
+            <ImageButton
+                android:id="@+id/imageButton_recycler_dynamic_good"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容" />
+                android:layout_height="match_parent"
+                android:tooltipText="点赞" />
+
+            <com.robinhood.ticker.TickerView
+                android:id="@+id/tickerView_recycler_dynamic_good_num"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="99"
+                android:textColor="@color/colorGrayText" />
+
+            <ImageButton
+                android:id="@+id/imageButton_recycler_dynamic_share"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:tooltipText="分享" />
+
         </LinearLayout>
-    </LinearLayout>
-    <VideoView
-        android:id="@+id/videoView_recycler_dynamic"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="10dp" />
-
-    <LinearLayout
-        android:layout_gravity="end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/imageButton_recycler_dynamic_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:tooltipText="评论" />
-
-        <TextView
-            android:id="@+id/textView_recycler_dynamic_comment_num"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="99"
-            android:textColor="@color/colorGrayText" />
-
-        <ImageButton
-            android:id="@+id/imageButton_recycler_dynamic_good"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:tooltipText="点赞" />
-
-        <com.robinhood.ticker.TickerView
-            android:id="@+id/tickerView_recycler_dynamic_good_num"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="99"
-            android:textColor="@color/colorGrayText" />
-
-        <ImageButton
-            android:id="@+id/imageButton_recycler_dynamic_share"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:tooltipText="分享" />
 
     </LinearLayout>
+</android.support.v7.widget.CardView>
 
-</LinearLayout>

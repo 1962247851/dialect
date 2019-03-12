@@ -2,6 +2,7 @@ package com.example.myapplication.Adapter.RecyclerView;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,7 @@ public class MyAdapterDiscover extends RecyclerView.Adapter<MyAdapterDiscover.Vi
         viewHolder.mTvUserName.setOnClickListener(onClickListener);
         viewHolder.mTvType.setOnClickListener(onClickListener);
         viewHolder.mTvTitle.setOnClickListener(onClickListener);
+        viewHolder.mCV.setOnClickListener(onClickListener);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -50,6 +52,7 @@ public class MyAdapterDiscover extends RecyclerView.Adapter<MyAdapterDiscover.Vi
         private ImageButton mIBUserHead;
         private ImageView mIV;
         private TextView mTvType, mTvTitle, mTvUserName;
+        private CardView mCV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +61,7 @@ public class MyAdapterDiscover extends RecyclerView.Adapter<MyAdapterDiscover.Vi
             mTvType = itemView.findViewById(R.id.textView_recycler_discover_type);
             mTvTitle = itemView.findViewById(R.id.textView_recycler_discover_title);
             mTvUserName = itemView.findViewById(R.id.textView_recycler_discover_user_name);
+            mCV = itemView.findViewById(R.id.cardView_recycler_view_discover);
         }
 
     }

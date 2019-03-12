@@ -62,6 +62,7 @@ public class FragmentDynamic extends Fragment {
             @Override
             public void OnClick(View view) {
                 switch (view.getId()) {
+                    // TODO: 2019/3/12 重写点击事件
                     case R.id.imageButton_recycler_dynamic_user_head:
                         Log.e(TAG, "OnClick: user head");
                         break;
@@ -85,6 +86,12 @@ public class FragmentDynamic extends Fragment {
                         break;
                     case R.id.imageButton_recycler_dynamic_share:
                         Log.e(TAG, "OnClick: share");
+                        break;
+                    case R.id.imageView_recycler_dynamic:
+                        Log.e(TAG, "OnClick: image view");
+                        break;
+                    case R.id.cardView_recycler_view_dynamic:
+                        Log.e(TAG, "OnClick: card view");
                         break;
                 }
             }

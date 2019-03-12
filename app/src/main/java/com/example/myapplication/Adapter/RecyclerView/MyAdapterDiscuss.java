@@ -2,6 +2,7 @@ package com.example.myapplication.Adapter.RecyclerView;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,7 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
         viewHolder.mTvUserComment.setOnClickListener(onClickListener);
         viewHolder.mTVGoodNum.setOnClickListener(onClickListener);
         viewHolder.mTVGoodNum.setCharacterLists(TickerUtils.provideNumberList());
+        viewHolder.mCV.setOnClickListener(onClickListener);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -51,6 +53,7 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
         private ImageButton mIBUserHead, mIBGood;
         private TextView mTvUserName, mTvUserComment;
         private TickerView mTVGoodNum;
+        private CardView mCV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,6 +62,7 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
             mTvUserName = itemView.findViewById(R.id.textView_recycler_discover_title);
             mTvUserComment = itemView.findViewById(R.id.textView_recycler_discuss_user_comment);
             mTVGoodNum = itemView.findViewById(R.id.tickerView_recycler_discuss_good_num);
+            mCV = itemView.findViewById(R.id.cardView_recycler_view_discuss);
         }
     }
 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/cardView_recycler_view_discuss"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/imageButton_recycler_discover_user_head"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_recycler_discuss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/imageButton_recycler_discuss_good"
+            android:layout_toEndOf="@+id/imageButton_recycler_discover_user_head"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_recycler_discover_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户名"
+                android:textColor="@color/colorBlackText"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/textView_recycler_discuss_user_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton_recycler_discuss_good"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/linearLayout_recycler_discuss"
+            android:layout_toStartOf="@id/tickerView_recycler_discuss_good_num" />
+
+        <com.robinhood.ticker.TickerView
+            android:id="@+id/tickerView_recycler_discuss_good_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imageButton_recycler_discuss_good"
+            android:layout_alignBottom="@id/imageButton_recycler_discuss_good"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="99"
+            android:textColor="@color/colorGrayText" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

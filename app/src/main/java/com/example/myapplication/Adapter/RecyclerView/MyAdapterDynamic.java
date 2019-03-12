@@ -2,6 +2,7 @@ package com.example.myapplication.Adapter.RecyclerView;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import com.example.myapplication.R;
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 
 public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.ViewHolder> {
-
 
     private Context context;
     private IOnDynamicClickListener iOnDynamicClickListener;
@@ -49,6 +48,8 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
         viewHolder.mTvContent.setOnClickListener(onClickListener);
         viewHolder.mTVGoodNum.setOnClickListener(onClickListener);
         viewHolder.mTvCommentNum.setOnClickListener(onClickListener);
+        viewHolder.mCV.setOnClickListener(onClickListener);
+        viewHolder.mIV.setOnClickListener(onClickListener);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -56,7 +57,8 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
         private ImageButton mIBUserHead, mIBComment, mIBGood, mIBShare;
         private TextView mTvUserName, mTvContent, mTvCommentNum;
         private TickerView mTVGoodNum;
-        private VideoView mVV;
+        private ImageView mIV;
+        private CardView mCV;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,7 +70,8 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
             mTVGoodNum = itemView.findViewById(R.id.tickerView_recycler_dynamic_good_num);
             mTvContent = itemView.findViewById(R.id.textView_recycler_dynamic_user_content);
             mTvCommentNum = itemView.findViewById(R.id.textView_recycler_dynamic_comment_num);
-            mVV = itemView.findViewById(R.id.videoView_recycler_dynamic);
+            mIV = itemView.findViewById(R.id.imageView_recycler_dynamic);
+            mCV = itemView.findViewById(R.id.cardView_recycler_view_dynamic);
             mTVGoodNum.setCharacterLists(TickerUtils.provideNumberList());
         }
     }
