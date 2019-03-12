@@ -8,16 +8,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterDiscuss;
 import com.example.myapplication.R;
 
 public class DubbingDetailsActivity extends AppCompatActivity {
-    private static final String TAG = "DubbingDetails----->";
+    private static final String TAG = "DubbingDetailsAc----->";
 
     private RecyclerView mRV;
     private MyAdapterDiscuss adapterDiscuss;
     private ImageView mIVUserHead;
+    private TextView mTvUserDescribe;
     private ImageButton mIBGood, mIBComment, mIBStar, mIBShare, mIBBack, mIBFollow;
 
     @Override
@@ -36,6 +38,7 @@ public class DubbingDetailsActivity extends AppCompatActivity {
         mIBComment.setOnClickListener(myOnClick);
         mIBStar.setOnClickListener(myOnClick);
         mIBShare.setOnClickListener(myOnClick);
+        mTvUserDescribe.setOnClickListener(myOnClick);
     }
 
     private void initView() {
@@ -48,6 +51,8 @@ public class DubbingDetailsActivity extends AppCompatActivity {
         mIBComment = findViewById(R.id.imageButton_dubbing_details_comment);
         mIBStar = findViewById(R.id.imageButton_dubbing_details_star);
         mIBShare = findViewById(R.id.imageButton_dubbing_details_share);
+        mTvUserDescribe = findViewById(R.id.textVIew_dubbing_details_user_describe);
+        mTvUserDescribe.setSelected(true);
         adapterDiscuss = new MyAdapterDiscuss(this, new MyAdapterDiscuss.IOnDiscussClickListener() {
             @Override
             public void OnClick(View view) {

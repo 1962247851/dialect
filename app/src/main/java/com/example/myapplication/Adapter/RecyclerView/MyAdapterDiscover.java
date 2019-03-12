@@ -40,6 +40,7 @@ public class MyAdapterDiscover extends RecyclerView.Adapter<MyAdapterDiscover.Vi
             }
         };
         viewHolder.mIBUserHead.setOnClickListener(onClickListener);
+        // TODO: 2019/3/12 可以不给图片设置点击事件动画效果不同
         viewHolder.mIV.setOnClickListener(onClickListener);
         viewHolder.mTvUserName.setOnClickListener(onClickListener);
         viewHolder.mTvType.setOnClickListener(onClickListener);

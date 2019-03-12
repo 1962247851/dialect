@@ -17,25 +17,30 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <android.support.v7.widget.Toolbar
+                android:background="@color/XFrame_white"
                 android:id="@+id/toolBar_myself"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
 
             <LinearLayout
+                android:background="@color/XFrame_white"
                 android:layout_marginTop="?attr/actionBarSize"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_marginBottom="30dp"
                     android:id="@+id/imageView_myself_user_head"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@color/colorPrimary" />
 
                 <TextView
+                    android:textSize="20sp"
+                    android:textColor="@color/colorBlackText"
                     android:id="@+id/textView_myself_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -71,7 +76,7 @@
 
                     <View
                         android:layout_width="1dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="30dp"
                         android:background="@color/colorGrayText" />
 
                     <LinearLayout
@@ -109,18 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="test"
-                android:textSize="50sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="test"
-                android:textSize="50sp" />
+            
 
             <TextView
                 android:layout_width="match_parent"

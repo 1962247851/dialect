@@ -1,6 +1,7 @@
 package com.example.myapplication.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication.Activity.DubbingDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterDynamic;
 import com.example.myapplication.R;
+import com.example.myapplication.Util.GlobalUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -28,6 +31,8 @@ public class FragmentDynamic extends Fragment {
     private Banner mB;
     private MyAdapterDynamic adapterDynamic;
     private IOnClickListener iOnClickListener;
+    private Intent intent;
+    private int intentType;
 
     public FragmentDynamic() {
     }
@@ -70,7 +75,7 @@ public class FragmentDynamic extends Fragment {
                         Log.e(TAG, "OnClick: user name");
                         break;
                     case R.id.textView_recycler_dynamic_user_content:
-                        Log.e(TAG, "OnClick: content");
+                        intentType = GlobalUtil.INTENT_TYPE_DUBBING_DETAILS;
                         break;
                     case R.id.imageButton_recycler_dynamic_comment:
                         Log.e(TAG, "OnClick: comment");
@@ -88,12 +93,21 @@ public class FragmentDynamic extends Fragment {
                         Log.e(TAG, "OnClick: share");
                         break;
                     case R.id.imageView_recycler_dynamic:
-                        Log.e(TAG, "OnClick: image view");
+                        intentType = GlobalUtil.INTENT_TYPE_DUBBING_DETAILS;
                         break;
                     case R.id.cardView_recycler_view_dynamic:
-                        Log.e(TAG, "OnClick: card view");
+                        intentType = GlobalUtil.INTENT_TYPE_DUBBING_DETAILS;
                         break;
                 }
+                switch (intentType) {
+                    case GlobalUtil.INTENT_TYPE_DUBBING_DETAILS:
+                        if (intent == null) {
+                            intent = new Intent(getContext(), DubbingDetailsActivity.class);
+                        }
+                        startActivity(intent);
+                        break;
+                }
+                intentType = -1;
             }
         });
         mRV = view.findViewById(R.id.recyclerView_fragment_dynamic);

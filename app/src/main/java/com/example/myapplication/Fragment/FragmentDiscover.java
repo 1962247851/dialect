@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import com.example.myapplication.Activity.DubbingDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterDiscover;
 import com.example.myapplication.R;
+import com.example.myapplication.Util.GlobalUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -31,6 +32,8 @@ public class FragmentDiscover extends Fragment {
     private IOnClickListener iOnClickListener;
     private IOnRefreshListener iOnRefreshListener;
     private IOnLoadMoreListener iOnLoadMoreListener;
+    private Intent intent;
+    private int intentType;
 
     @SuppressLint("ValidFragment")
     public FragmentDiscover(IOnClickListener iOnClickListener, IOnRefreshListener iOnRefreshListener, IOnLoadMoreListener iOnLoadMoreListener) {
@@ -71,12 +74,11 @@ public class FragmentDiscover extends Fragment {
                         Log.e(TAG, "OnClick: user head");
                         break;
                     case R.id.imageView_fragment_discover:
-                        Log.e(TAG, "OnClick: imageView");
-                        Intent intent = new Intent(getContext(), DubbingDetailsActivity.class);
-                        startActivity(intent);
+                        // TODO: 2019/3/12 修改intentType
+                        intentType = GlobalUtil.INTENT_TYPE_DUBBING_DETAILS;
                         break;
                     case R.id.textView_recycler_discover_title:
-                        Log.e(TAG, "OnClick: title");
+                        intentType = GlobalUtil.INTENT_TYPE_DUBBING_DETAILS;
                         break;
                     case R.id.textView_recycler_discover_type:
                         Log.e(TAG, "OnClick: type");
@@ -88,9 +90,19 @@ public class FragmentDiscover extends Fragment {
                         Log.e(TAG, "OnClick: data");
                         break;
                     case R.id.cardView_recycler_view_discover:
-                        Log.e(TAG, "OnClick: card view");
+                        intentType = GlobalUtil.INTENT_TYPE_DUBBING_DETAILS;
                         break;
                 }
+                switch (intentType) {
+                    case GlobalUtil.INTENT_TYPE_DUBBING_DETAILS:
+                        if (intent == null) {
+                            intent = new Intent(getContext(), DubbingDetailsActivity.class);
+                        }
+                        startActivity(intent);
+                        break;
+
+                }
+                intentType = -1;
             }
         });
         mRV = view.findViewById(R.id.recyclerView_fragment_discover);
