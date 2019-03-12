@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_chat_call"
+        android:title="通话"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menu_chat_user_head"
+        android:title="用户"
+        app:showAsAction="always" />
+</menu>

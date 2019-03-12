@@ -18,7 +18,7 @@ public class MySelfActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ImageView mIVUserHead;
-    private TextView mTvUserName, mTvFanNum, mTvFollowNum, mTvFan, mTvFollow;
+    private TextView mTvUserName, mTvFanNum, mTvFollowNum, mTvFan, mTvFollow, mTvMessage, mTvStar, mTvAchievement, mTvPublish, mTvDraft, mTvSetting, mTvAboutUs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,13 @@ public class MySelfActivity extends AppCompatActivity {
         mTvFollowNum.setOnClickListener(myOnClick);
         mTvFollow.setOnClickListener(myOnClick);
         mTvUserName.setOnClickListener(myOnClick);
+        mTvMessage.setOnClickListener(myOnClick);
+        mTvStar.setOnClickListener(myOnClick);
+        mTvAchievement.setOnClickListener(myOnClick);
+        mTvPublish.setOnClickListener(myOnClick);
+        mTvDraft.setOnClickListener(myOnClick);
+        mTvSetting.setOnClickListener(myOnClick);
+        mTvAboutUs.setOnClickListener(myOnClick);
     }
 
     private void initView() {
@@ -46,6 +53,13 @@ public class MySelfActivity extends AppCompatActivity {
         mTvFollow = findViewById(R.id.textView_myself_follow);
         mTvFollowNum = findViewById(R.id.textView_myself_follow_num);
         mTvUserName = findViewById(R.id.textView_myself_user_name);
+        mTvMessage = findViewById(R.id.textView_myself_message);
+        mTvStar = findViewById(R.id.textView_myself_star);
+        mTvAchievement = findViewById(R.id.textView_myself_achievement);
+        mTvPublish = findViewById(R.id.textView_myself_publish);
+        mTvDraft = findViewById(R.id.textView_myself_draft);
+        mTvSetting = findViewById(R.id.textView_myself_setting);
+        mTvAboutUs = findViewById(R.id.textView_myself_about_us);
 
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -60,14 +74,13 @@ public class MySelfActivity extends AppCompatActivity {
 
 
     class MyOnClick implements View.OnClickListener {
-
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                // TODO: 2019/3/12 重写点击事件
                 case R.id.imageView_myself_user_head:
                     Log.e(TAG, "onClick: user head");
                     break;
-
                 case R.id.textView_myself_user_name:
                     Log.e(TAG, "onClick: user name");
                     break;
@@ -80,8 +93,26 @@ public class MySelfActivity extends AppCompatActivity {
                 case R.id.textView_myself_follow_num:
                     Log.e(TAG, "onClick: follow num");
                     break;
-                case R.id.textView_myself_follow:
-                    Log.e(TAG, "onClick: follow");
+                case R.id.textView_myself_message:
+                    Log.e(TAG, "onClick: message");
+                    break;
+                case R.id.textView_myself_star:
+                    Log.e(TAG, "onClick: star");
+                    break;
+                case R.id.textView_myself_achievement:
+                    Log.e(TAG, "onClick: achievement");
+                    break;
+                case R.id.textView_myself_publish:
+                    Log.e(TAG, "onClick: publish");
+                    break;
+                case R.id.textView_myself_draft:
+                    Log.e(TAG, "onClick: draft");
+                    break;
+                case R.id.textView_myself_setting:
+                    Log.e(TAG, "onClick: setting");
+                    break;
+                case R.id.textView_myself_about_us:
+                    Log.e(TAG, "onClick: about us");
                     break;
             }
         }

@@ -1,5 +1,6 @@
 package com.example.myapplication.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.navigation_more:
                         Log.e(TAG, "onNavigationItemSelected: More");
+                        Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                        startActivity(intent);
                         // TODO: 2019/3/11
                         return true;
                     case R.id.navigation_audition:
