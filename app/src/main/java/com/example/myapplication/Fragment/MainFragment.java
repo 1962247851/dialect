@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,12 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.myapplication.Activity.MainActivity;
 import com.example.myapplication.Activity.MySelfActivity;
 import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapter;
 import com.example.myapplication.R;
 import com.flyco.tablayout.SlidingTabLayout;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
@@ -38,7 +35,6 @@ public class MainFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "MainFragment----->";
-    public static final String FragmentTag = "MainFragment";
 
 
     private SlidingTabLayout mTL;

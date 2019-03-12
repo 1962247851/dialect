@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
+        <activity
+            android:name=".Activity.ChatActivity"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/AppThemeNoActionBar.NoActionBar"></activity>
         <activity android:name=".Activity.DubbingDetailsActivity" />
         <activity android:name=".Activity.MySelfActivity" />
         <activity android:name=".Activity.LoginActivity">

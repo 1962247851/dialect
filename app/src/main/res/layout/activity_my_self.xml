@@ -3,48 +3,49 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            app:titleEnabled="false"
-            app:contentScrim="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
+            app:contentScrim="@color/colorAccent"
             app:expandedTitleGravity="top|end"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
 
             <android.support.v7.widget.Toolbar
-                android:background="@color/XFrame_white"
                 android:id="@+id/toolBar_myself"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/XFrame_white"
                 app:layout_collapseMode="pin" />
 
             <LinearLayout
-                android:background="@color/XFrame_white"
-                android:layout_marginTop="?attr/actionBarSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/XFrame_white"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_marginBottom="30dp"
                     android:id="@+id/imageView_myself_user_head"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginBottom="30dp"
                     android:background="@color/colorPrimary" />
 
                 <TextView
-                    android:textSize="20sp"
-                    android:textColor="@color/colorBlackText"
                     android:id="@+id/textView_myself_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="用户名" />
+                    android:text="用户名"
+                    android:textColor="@color/colorBlackText"
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -110,11 +111,12 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            
+
 
             <TextView
                 android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import android.view.View;
 import com.example.myapplication.Fragment.DubbingFragment;
 import com.example.myapplication.Fragment.MainFragment;
 import com.example.myapplication.R;
+import com.example.myapplication.Util.GlobalUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         navigation = findViewById(R.id.navigation_main);
         MainFragment mainFragment = new MainFragment();
         fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.frameLayout_main, mainFragment, MainFragment.FragmentTag).commitAllowingStateLoss();
+        fragmentManager.beginTransaction().add(R.id.frameLayout_main, mainFragment, GlobalUtil.FRAGMENT_TAG.MAIN).commitAllowingStateLoss();
         currentFragment = mainFragment;
     }
 
@@ -48,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.navigation_home:
-                        switchFragment(MainFragment.FragmentTag);
+                        switchFragment(GlobalUtil.FRAGMENT_TAG.MAIN);
                         return true;
                     case R.id.navigation_dubbing:
-                        switchFragment(DubbingFragment.FragmentTag);
+                        switchFragment(GlobalUtil.FRAGMENT_TAG.DUBBING);
                         return true;
                     case R.id.navigation_more:
                         Log.e(TAG, "onNavigationItemSelected: More");
@@ -102,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
     private void switchFragment(String currentFragmentTag) {
         Fragment fragment = null;
         switch (currentFragmentTag) {
-            case MainFragment.FragmentTag:
+            case GlobalUtil.FRAGMENT_TAG.MAIN:
                 fragment = fragmentManager.findFragmentByTag(currentFragmentTag);
                 if (fragment == null) {
                     fragment = new MainFragment();
                 }
                 break;
-            case DubbingFragment.FragmentTag:
+            case GlobalUtil.FRAGMENT_TAG.DUBBING:
                 fragment = fragmentManager.findFragmentByTag(currentFragmentTag);
                 if (fragment == null) {
                     fragment = new DubbingFragment(iOnClickListener);
