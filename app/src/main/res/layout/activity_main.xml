@@ -10,14 +10,15 @@
         android:id="@+id/frameLayout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/navigation_main" />
+        android:layout_above="@+id/navigationBar_main" />
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation_main"
+    <me.sugarkawhi.bottomnavigationbar.BottomNavigationBar
+        android:id="@+id/navigationBar_main"
         android:layout_width="match_parent"
+        app:bnb_anim="true"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation" />
+        android:background="@color/colorAccent"
+        app:bnb_layoutId="@layout/bnb_item_badge" />
 
 </RelativeLayout>

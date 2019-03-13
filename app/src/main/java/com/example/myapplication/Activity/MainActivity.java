@@ -2,13 +2,10 @@ package com.example.myapplication.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.example.myapplication.Fragment.DubbingFragment;
@@ -16,14 +13,21 @@ import com.example.myapplication.Fragment.MainFragment;
 import com.example.myapplication.R;
 import com.example.myapplication.Util.GlobalUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import me.sugarkawhi.bottomnavigationbar.BottomNavigationBar;
+import me.sugarkawhi.bottomnavigationbar.BottomNavigationEntity;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity----->";
 
     private FragmentManager fragmentManager;
     private Fragment currentFragment;
-    private BottomNavigationView navigation;
+    private BottomNavigationBar bottomNavigationBar;
     private DubbingFragment.IOnClickListener iOnClickListener;
+    private int pastPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,47 +36,83 @@ public class MainActivity extends AppCompatActivity {
         initListener();
     }
 
-
-    //找到控件
     private void initView() {
         setContentView(R.layout.activity_main);
-        navigation = findViewById(R.id.navigation_main);
+        bottomNavigationBar = findViewById(R.id.navigationBar_main);
+        List<BottomNavigationEntity> mEntities = new ArrayList<>();
+        mEntities.add(new BottomNavigationEntity(
+                "首页",
+                R.drawable.ic_home_black_24dp,
+                R.drawable.ic_home_black_24dp
+        ));
+        mEntities.add(new BottomNavigationEntity(
+                "配音",
+                R.drawable.ic_dashboard_black_24dp,
+                R.drawable.ic_dashboard_black_24dp
+        ));
+        mEntities.add(new BottomNavigationEntity(
+                R.drawable.ic_add_circle_48dp,
+                R.drawable.ic_add_circle_48dp
+        ));
+        mEntities.add(new BottomNavigationEntity(
+                "听音",
+                R.drawable.ic_home_black_24dp,
+                R.drawable.ic_home_black_24dp
+        ));
+        mEntities.add(new BottomNavigationEntity(
+                "比音",
+                R.drawable.ic_home_black_24dp,
+                R.drawable.ic_home_black_24dp, 100
+        ));
+        bottomNavigationBar.setEntities(mEntities);
+        bottomNavigationBar.setCurrentPosition(0);
+
         MainFragment mainFragment = new MainFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.frameLayout_main, mainFragment, GlobalUtil.FRAGMENT_TAG.MAIN).commitAllowingStateLoss();
         currentFragment = mainFragment;
     }
 
-    //设置监听事件
     private void initListener() {
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationBar.setBnbItemSelectListener(new BottomNavigationBar.IBnbItemSelectListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.navigation_home:
+            public void onBnbItemSelect(int position) {
+                switch (position) {
+                    case 0:
                         switchFragment(GlobalUtil.FRAGMENT_TAG.MAIN);
-                        return true;
-                    case R.id.navigation_dubbing:
+                        break;
+                    case 1:
                         switchFragment(GlobalUtil.FRAGMENT_TAG.DUBBING);
-                        return true;
-                    case R.id.navigation_more:
+                        break;
+                    case 2:
+                        bottomNavigationBar.setCurrentPosition(pastPosition);
                         Log.e(TAG, "onNavigationItemSelected: More");
                         Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                         startActivity(intent);
                         // TODO: 2019/3/11
-                        return true;
-                    case R.id.navigation_audition:
+                        break;
+                    case 3:
                         Log.e(TAG, "onNavigationItemSelected: Audition");
                         // TODO: 2019/3/11
-                        return true;
-                    case R.id.navigation_compare:
+                        break;
+                    case 4:
                         Log.e(TAG, "onNavigationItemSelected: Compare");
                         // TODO: 2019/3/11
-                        return true;
+                        break;
                 }
-                return false;
+                if (position != 2) {
+                    pastPosition = position;
+                }
             }
         });
+        bottomNavigationBar.setBnbItemDoubleClickListener(new BottomNavigationBar.IBnbItemDoubleClickListener() {
+            @Override
+            public void onBnbItemDoubleClick(int position) {
+                // TODO: 2019/3/13 双击刷新或其他
+                Log.e(TAG, "onBnbItemDoubleClick: " + position);
+            }
+        });
+
         iOnClickListener = new DubbingFragment.IOnClickListener() {
             @Override
             public void OnClick(View view) {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,16 +10,18 @@
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:tooltipText="退出" />
 
     <ImageView
         android:id="@+id/imageView_login_logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/imageButton_login_exit"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="50dp" />
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="40dp" />
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/materialEditText_login_user_name"
@@ -101,39 +102,41 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:paddingBottom="10dp"
             android:text="快捷登录"
             android:textColor="@color/colorBlackText" />
 
-        <RadioGroup
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
-            <RadioButton
-                android:textSize="0sp"
+            <ImageButton
+                android:id="@+id/imageButton_login_qq"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginEnd="30dp" />
 
-            <RadioButton
+            <ImageButton
+                android:id="@+id/imageButton_login_weChat"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginEnd="30dp" />
 
-            <RadioButton
+            <ImageButton
+                android:id="@+id/imageButton_login_wei_bo"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
-        </RadioGroup>
-
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name=".Activity.ChatActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustResize"
             android:label="@string/title_activity_chat"
             android:theme="@style/AppThemeNoActionBar.NoActionBar" />
         <activity android:name=".Activity.DubbingDetailsActivity" />

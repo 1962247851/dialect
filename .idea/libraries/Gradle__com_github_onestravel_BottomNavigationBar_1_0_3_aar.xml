@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.onestravel:BottomNavigationBar:1.0.3@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/BottomNavigationBar-1.0.3.aar/b078f6a63343e3d75b1b4e318daebd88/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/BottomNavigationBar-1.0.3.aar/b078f6a63343e3d75b1b4e318daebd88/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.onestravel/BottomNavigationBar/1.0.3/cab07797e806c851041107a9e0647bdb37215196/BottomNavigationBar-1.0.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity----->";
 
     private Button mBtnLogin, mBtnRegister, mBtnForgetPassWord;
-    private ImageButton mIBExit;
+    private ImageButton mIBExit, mIBQQ, mIBWeChat, mIBWeiBo;
     private MaterialEditText mMETUserName, mMETUserPassword;
 
     @Override
@@ -35,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
         mIBExit.setOnClickListener(myOnClick);
         mMETUserName.setOnClickListener(myOnClick);
         mMETUserPassword.setOnClickListener(myOnClick);
+        mIBQQ.setOnClickListener(myOnClick);
+        mIBWeChat.setOnClickListener(myOnClick);
+        mIBWeiBo.setOnClickListener(myOnClick);
 
     }
 
@@ -46,12 +49,16 @@ public class LoginActivity extends AppCompatActivity {
         mIBExit = findViewById(R.id.imageButton_login_exit);
         mMETUserName = findViewById(R.id.materialEditText_login_user_name);
         mMETUserPassword = findViewById(R.id.materialEditText_login_user_password);
+        mIBQQ = findViewById(R.id.imageButton_login_qq);
+        mIBWeChat = findViewById(R.id.imageButton_login_weChat);
+        mIBWeiBo = findViewById(R.id.imageButton_login_wei_bo);
     }
 
     class MyOnClick implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
+            // TODO: 2019/3/13 重写点击事件
             switch (v.getId()) {
                 case R.id.button_login_login:
                     final XLoadingDialog loadingDialog = new XLoadingDialog(LoginActivity.this);
@@ -84,6 +91,15 @@ public class LoginActivity extends AppCompatActivity {
                     break;
                 case R.id.materialEditText_login_user_password:
                     Log.e(TAG, "onClick: user password");
+                    break;
+                case R.id.imageButton_login_qq:
+                    Log.e(TAG, "onClick: qq");
+                    break;
+                case R.id.imageButton_login_weChat:
+                    Log.e(TAG, "onClick: weChat");
+                    break;
+                case R.id.imageButton_login_wei_bo:
+                    Log.e(TAG, "onClick: wei bo");
                     break;
             }
         }

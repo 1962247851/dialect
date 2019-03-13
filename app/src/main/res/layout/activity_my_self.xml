@@ -1,122 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srlEnablePureScrollMode="true">
+    android:layout_height="match_parent">
 
-    <android.support.design.widget.CoordinatorLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.AppBarLayout
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:contentScrim="@color/colorAccent"
+            app:expandedTitleGravity="top|end"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolBar_myself"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/XFrame_white"
+                app:layout_collapseMode="pin" />
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
-                app:contentScrim="@color/colorAccent"
-                app:expandedTitleGravity="top|end"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:titleEnabled="false">
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/XFrame_white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolBar_myself"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/XFrame_white"
-                    app:layout_collapseMode="pin" />
+                <ImageView
+                    android:id="@+id/imageView_myself_user_head"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/textView_myself_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="用户名"
+                    android:textColor="@color/colorBlackText"
+                    android:textSize="20sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="?attr/actionBarSize"
-                    android:background="@color/XFrame_white"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                    android:layout_height="?attr/actionBarSize"
+                    android:gravity="center">
 
-                    <ImageView
-                        android:id="@+id/imageView_myself_user_head"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginBottom="30dp"
-                        android:background="@color/colorPrimary" />
-
-                    <TextView
-                        android:id="@+id/textView_myself_user_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:text="用户名"
-                        android:textColor="@color/colorBlackText"
-                        android:textSize="20sp" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:gravity="center">
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/textView_myself_fan_num"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:text="99"
+                            android:textColor="@color/colorBlackText" />
 
-                            <TextView
-                                android:id="@+id/textView_myself_fan_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="99"
-                                android:textColor="@color/colorBlackText" />
-
-                            <TextView
-                                android:id="@+id/textView_myself_fan"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="粉丝" />
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="30dp"
-                            android:background="@color/colorGrayText" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <TextView
+                            android:id="@+id/textView_myself_fan"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:text="粉丝" />
 
-                            <TextView
-                                android:id="@+id/textView_myself_follow_num"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="99"
-                                android:textColor="@color/colorBlackText" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/textView_myself_follow"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="关注" />
-                        </LinearLayout>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"
+                        android:background="@color/colorGrayText" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView_myself_follow_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="99"
+                            android:textColor="@color/colorBlackText" />
+
+                        <TextView
+                            android:id="@+id/textView_myself_follow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="关注" />
                     </LinearLayout>
                 </LinearLayout>
+            </LinearLayout>
 
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:srlEnablePureScrollMode="true">
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:background="@color/colorPrimary">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -135,17 +136,14 @@
                         android:layout_marginTop="1dp"
                         android:background="@color/XFrame_white"
                         android:clickable="true"
-                        android:focusable="true"
-                        android:padding="10dp"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="20dp">
+                        android:focusable="true">
 
                         <TextView
-                            android:layout_centerVertical="true"
                             android:id="@+id/textView_myself_message"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="10dp"
                             android:text="我的消息"
                             android:textColor="@color/colorGrayText"
                             android:textSize="20sp" />
@@ -155,6 +153,7 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_arrow_right" />
                     </RelativeLayout>
 
@@ -164,45 +163,41 @@
                         android:layout_marginTop="1dp"
                         android:background="@color/XFrame_white"
                         android:clickable="true"
-                        android:paddingEnd="20dp"
-                        android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:padding="10dp"
-                        android:paddingStart="20dp">
+                        android:focusable="true">
 
                         <TextView
-                            android:layout_centerVertical="true"
                             android:id="@+id/textView_myself_star"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="10dp"
                             android:text="我的收藏"
                             android:textColor="@color/colorGrayText"
                             android:textSize="20sp" />
 
                         <ImageView
-
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_arrow_right" />
                     </RelativeLayout>
 
-                    <RelativeLayout         android:paddingEnd="20dp"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:background="@color/XFrame_white"
                         android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:padding="10dp"
-                        android:paddingStart="20dp">
+                        android:focusable="true">
 
-                        <TextView android:layout_centerVertical="true"
+                        <TextView
                             android:id="@+id/textView_myself_achievement"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="10dp"
                             android:text="我的成就"
                             android:textColor="@color/colorGrayText"
                             android:textSize="20sp" />
@@ -212,24 +207,24 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_arrow_right" />
                     </RelativeLayout>
 
-                    <RelativeLayout         android:paddingEnd="20dp"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:background="@color/XFrame_white"
                         android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:padding="10dp"
-                        android:paddingStart="20dp">
+                        android:focusable="true">
 
-                        <TextView android:layout_centerVertical="true"
+                        <TextView
                             android:id="@+id/textView_myself_publish"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="10dp"
                             android:text="我的发布"
                             android:textColor="@color/colorGrayText"
                             android:textSize="20sp" />
@@ -239,24 +234,24 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_arrow_right" />
                     </RelativeLayout>
 
-                    <RelativeLayout         android:paddingEnd="20dp"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:background="@color/XFrame_white"
                         android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:padding="10dp"
-                        android:paddingStart="20dp">
+                        android:focusable="true">
 
-                        <TextView android:layout_centerVertical="true"
+                        <TextView
                             android:id="@+id/textView_myself_draft"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="10dp"
                             android:text="我的草稿"
                             android:textColor="@color/colorGrayText"
                             android:textSize="20sp" />
@@ -266,24 +261,24 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_arrow_right" />
                     </RelativeLayout>
 
-                    <RelativeLayout         android:paddingEnd="20dp"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:background="@color/XFrame_white"
                         android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:padding="10dp"
-                        android:paddingStart="20dp">
+                        android:focusable="true">
 
-                        <TextView android:layout_centerVertical="true"
+                        <TextView
                             android:id="@+id/textView_myself_setting"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="10dp"
                             android:text="我的设置"
                             android:textColor="@color/colorGrayText"
                             android:textSize="20sp" />
@@ -293,6 +288,7 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_arrow_right" />
                     </RelativeLayout>
                 </LinearLayout>
@@ -303,21 +299,20 @@
                     android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
-                    <RelativeLayout         android:paddingEnd="20dp"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:background="@color/XFrame_white"
                         android:clickable="true"
-                        android:focusable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        android:padding="10dp"
-                        android:paddingStart="20dp">
+                        android:focusable="true">
 
-                        <TextView android:layout_centerVertical="true"
+                        <TextView
                             android:id="@+id/textView_myself_about_us"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:padding="10dp"
                             android:text="关于我们"
                             android:textColor="@color/colorGrayText"
                             android:textSize="20sp" />
@@ -327,11 +322,11 @@
                             android:layout_height="30dp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_arrow_right" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-
-    </android.support.design.widget.CoordinatorLayout>
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</android.support.design.widget.CoordinatorLayout>
