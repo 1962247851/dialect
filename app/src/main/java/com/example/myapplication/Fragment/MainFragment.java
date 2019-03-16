@@ -14,12 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.myapplication.Activity.MySelfActivity;
 import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapter;
 import com.example.myapplication.R;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.youth.xframe.XFrame;
+import com.youth.xframe.widget.XToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +103,8 @@ public class MainFragment extends Fragment {
         mTL = view.findViewById(R.id.tabLayout_main);
         mVP = view.findViewById(R.id.viewPager_main);
 
-        FragmentDiscuss.IOnClickListener iOnClickListener = new FragmentDiscuss.IOnClickListener() {
+        //设置三个Fragment的接口
+        FragmentDiscuss.IDiscussListeners iDiscussListeners = new FragmentDiscuss.IDiscussListeners() {
             @Override
             public void OnClick(View view) {
                 switch (view.getId()) {
@@ -110,9 +114,55 @@ public class MainFragment extends Fragment {
                         break;
                 }
             }
-        };
 
-        FragmentDiscover.IOnClickListener iOnClickListener1 = new FragmentDiscover.IOnClickListener() {
+            @Override
+            public void OnRefresh(RefreshLayout refreshLayout) {
+                // TODO: 2019/3/11 重写发现页面下拉刷新事件 可以通过refreshLayout.getState()获取状态
+                switch (refreshLayout.getState()) {
+                    case Refreshing:
+//                        Handler handler = new Handler();
+//                        Runnable runnable = new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                refreshLayout.finishRefresh(true);
+//                            }
+//                        };
+//                        handler.postDelayed(runnable, 1000);
+                        refreshLayout.finishRefresh(1000, true);
+                        Log.e(TAG, "OnRefresh: refreshing");
+                        break;
+                    case RefreshFinish:
+                        Log.e(TAG, "OnRefresh: finish refresh");
+                        break;
+                    case TwoLevel:
+                        Toast.makeText(getContext(), "two level", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "OnRefresh: two level");
+                        break;
+                }
+            }
+
+            @Override
+            public void OnLoadMore(final RefreshLayout refreshLayout) {
+                // TODO: 2019/3/11 与下拉同理
+                switch (refreshLayout.getState()) {
+                    case Loading:
+                        Handler handler = new Handler();
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshLayout.finishLoadMore(true);
+                            }
+                        };
+                        handler.postDelayed(runnable, 1000);
+                        Log.e(TAG, "OnLoadMore: loading");
+                        break;
+                    case LoadFinish:
+                        Log.e(TAG, "OnLoadMore: load finish");
+                        break;
+                }
+            }
+        };
+        FragmentDiscover.IDiscoverListeners iDiscoverListeners = new FragmentDiscover.IDiscoverListeners() {
             @Override
             public void OnClick(View view) {
                 switch (view.getId()) {
@@ -121,34 +171,7 @@ public class MainFragment extends Fragment {
                         break;
                 }
             }
-        };
 
-        FragmentDynamic.IOnClickListener iOnClickListener2 = new FragmentDynamic.IOnClickListener() {
-            @Override
-            public void OnClick(View view) {
-                switch (view.getId()) {
-                    case R.id.banner_fragment_dynamic:
-                        Log.e(TAG, "OnClick: banner");
-                        break;
-                }
-            }
-        };
-        FragmentDiscuss fragmentDiscuss = new FragmentDiscuss(iOnClickListener, new FragmentDiscuss.IOnRefreshLoadMoreListener() {
-            @Override
-            public void OnRefresh(RefreshLayout refreshLayout) {
-                // TODO: 2019/3/12
-                Log.e(TAG, "OnRefresh: " + refreshLayout.getState());
-            }
-
-            @Override
-            public void OnLoadMore(RefreshLayout refreshLayout) {
-                // TODO: 2019/3/12
-                Log.e(TAG, "OnLoadMore: " + refreshLayout.getState());
-            }
-        });
-
-
-        FragmentDiscover fragmentDiscover = new FragmentDiscover(iOnClickListener1, new FragmentDiscover.IOnRefreshListener() {
             @Override
             public void OnRefresh(final RefreshLayout refreshLayout) {
                 // TODO: 2019/3/11 重写发现页面下拉刷新事件 可以通过refreshLayout.getState()获取状态
@@ -164,17 +187,25 @@ public class MainFragment extends Fragment {
                         handler.postDelayed(runnable, 1000);
                         Log.e(TAG, "OnRefresh: refreshing");
                         break;
+                    case RefreshFinish:
+                        Log.e(TAG, "OnRefresh: finish refresh");
+                        break;
                 }
             }
-        }, new FragmentDiscover.IOnLoadMoreListener() {
+
             @Override
-            public void OnLoadMore(RefreshLayout refreshLayout) {
+            public void OnLoadMore(final RefreshLayout refreshLayout) {
                 // TODO: 2019/3/11 与下拉同理
                 switch (refreshLayout.getState()) {
-                    case PullUpToLoad:
-                        Log.e(TAG, "OnLoadMore: pull to load");
-                        break;
                     case Loading:
+                        Handler handler = new Handler();
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshLayout.finishLoadMore(true);
+                            }
+                        };
+                        handler.postDelayed(runnable, 1000);
                         Log.e(TAG, "OnLoadMore: loading");
                         break;
                     case LoadFinish:
@@ -183,29 +214,87 @@ public class MainFragment extends Fragment {
 
                 }
             }
-        });
-        FragmentDynamic fragmentDynamic = new FragmentDynamic(iOnClickListener2, new FragmentDynamic.IOnRefreshLoadMoreListener() {
+
+
             @Override
-            public void OnRefresh(RefreshLayout refreshLayout) {
-                // TODO: 2019/3/12  
-                Log.e(TAG, "OnRefresh: " + refreshLayout.getState());
+            public void OnBanner(int position) {
+                Log.e(TAG, "OnBanner: banner position" + position);
+            }
+        };
+        FragmentDynamic.IDynamicListeners iDynamicListeners = new FragmentDynamic.IDynamicListeners() {
+            @Override
+            public void OnClick(View view) {
+                switch (view.getId()) {
+                    case R.id.banner_fragment_dynamic:
+                        Log.e(TAG, "OnClick: banner");
+                        break;
+                }
             }
 
             @Override
-            public void OnLoadMore(RefreshLayout refreshLayout) {
-                // TODO: 2019/3/12  
-                Log.e(TAG, "OnLoadMore: " + refreshLayout.getState());
+            public void OnRefresh(final RefreshLayout refreshLayout) {
+                // TODO: 2019/3/11 重写发现页面下拉刷新事件 可以通过refreshLayout.getState()获取状态
+                switch (refreshLayout.getState()) {
+                    case Refreshing:
+                        Handler handler = new Handler();
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshLayout.finishRefresh(true);
+                            }
+                        };
+                        handler.postDelayed(runnable, 1000);
+                        Log.e(TAG, "OnRefresh: refreshing");
+                        break;
+                    case RefreshFinish:
+                        Log.e(TAG, "OnRefresh: finish refresh");
+                        break;
+                }
             }
-        });
+
+            @Override
+            public void OnLoadMore(final RefreshLayout refreshLayout) {
+                // TODO: 2019/3/11 与下拉同理
+                switch (refreshLayout.getState()) {
+                    case Loading:
+                        Handler handler = new Handler();
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                refreshLayout.finishLoadMore(true);
+                            }
+                        };
+                        handler.postDelayed(runnable, 1000);
+                        Log.e(TAG, "OnLoadMore: loading");
+                        break;
+                    case LoadFinish:
+                        Log.e(TAG, "OnLoadMore: load finish");
+                        break;
+
+                }
+            }
+
+            @Override
+            public void OnBanner(int position) {
+                Log.e(TAG, "OnBanner: banner position " + position);
+            }
+        };
+
+        //实例化三个Fragment
+        FragmentDiscuss fragmentDiscuss = new FragmentDiscuss(iDiscussListeners);
+        FragmentDiscover fragmentDiscover = new FragmentDiscover(iDiscoverListeners);
+        FragmentDynamic fragmentDynamic = new FragmentDynamic(iDynamicListeners);
 
         fragments.add(fragmentDiscuss);
         fragments.add(fragmentDiscover);
         fragments.add(fragmentDynamic);
+
         pagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), fragments);
+
+
         mVP.setOffscreenPageLimit(3);
         mVP.setAdapter(pagerAdapter);
         mTL.setViewPager(mVP);
-
         MyOnClick myOnClick = new MyOnClick();
         mBtnUserHead.setOnClickListener(myOnClick);
         mBtnSearch.setOnClickListener(myOnClick);
@@ -229,6 +318,7 @@ public class MainFragment extends Fragment {
         }
     }
 
+    //与Activity互相传递消息要用
     public interface IOnClickListener {
         void OnClick(View view);
     }
