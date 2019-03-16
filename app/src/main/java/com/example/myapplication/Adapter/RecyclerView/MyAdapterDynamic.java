@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 
 public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.ViewHolder> {
+
+    private static final String TAG = "DynamicAdapter----->";
 
     private Context context;
     private IOnDynamicClickListener iOnDynamicClickListener;
@@ -33,11 +36,29 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapterDynamic.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyAdapterDynamic.ViewHolder viewHolder, final int i) {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iOnDynamicClickListener.OnClick(v);
+                // TODO: 2019/3/16 评论和分享对话框
+                switch (v.getId()) {
+                    case R.id.imageButton_recycler_dynamic_comment:
+                        Log.e(TAG, "onClick: comment");
+                        break;
+                    case R.id.imageButton_recycler_dynamic_good:
+                        if (!viewHolder.Gooded) {
+                            viewHolder.Gooded = true;
+                            viewHolder.mTVGoodNum.setText(String.valueOf(Integer.valueOf(viewHolder.mTVGoodNum.getText()) + 1));
+                        } else {
+                            viewHolder.Gooded = false;
+                            viewHolder.mTVGoodNum.setText(String.valueOf(Integer.valueOf(viewHolder.mTVGoodNum.getText()) - 1));
+                        }
+                        // TODO: 2019/3/16
+                        //notifyDataSetChanged();
+                        notifyItemChanged(i);
+                        break;
+                }
             }
         };
         viewHolder.mIBUserHead.setOnClickListener(onClickListener);
@@ -50,6 +71,8 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
         viewHolder.mTvCommentNum.setOnClickListener(onClickListener);
         viewHolder.mCV.setOnClickListener(onClickListener);
         viewHolder.mIV.setOnClickListener(onClickListener);
+
+        viewHolder.mTVGoodNum.setText(i+"");
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -59,6 +82,7 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
         private TickerView mTVGoodNum;
         private ImageView mIV;
         private CardView mCV;
+        private Boolean Gooded = false;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +103,7 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
     //总共的评论数
     @Override
     public int getItemCount() {
-        return 15;
+        return 5;
     }
 
     public interface IOnDynamicClickListener {

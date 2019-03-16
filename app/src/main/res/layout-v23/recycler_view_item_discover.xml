@@ -4,8 +4,6 @@
     android:id="@+id/cardView_recycler_view_discover"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:clickable="true"
-    android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
     <RelativeLayout
@@ -52,7 +50,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:paddingEnd="5dp"
-                    android:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题"
+                    android:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题"
                     android:textColor="@color/colorBlackText"
                     android:textSize="15sp"
                     android:textStyle="bold" />

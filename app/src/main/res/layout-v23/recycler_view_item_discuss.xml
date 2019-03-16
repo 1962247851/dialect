@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:id="@+id/cardView_recycler_view_discuss"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:clickable="true"
+    android:id="@+id/cardView_recycler_view_discuss"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
@@ -14,7 +14,7 @@
         android:padding="10dp">
 
         <ImageButton
-            android:id="@+id/imageButton_recycler_discover_user_head"
+            android:id="@+id/imageButton_recycler_discuss_user_head"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
@@ -26,11 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/imageButton_recycler_discuss_good"
-            android:layout_toEndOf="@+id/imageButton_recycler_discover_user_head"
+            android:layout_toEndOf="@+id/imageButton_recycler_discuss_user_head"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView_recycler_discover_title"
+                android:id="@+id/textView_recycler_discuss_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="用户名"
@@ -49,6 +49,7 @@
         </LinearLayout>
 
         <ImageButton
+            android:tooltipText="点赞"
             android:id="@+id/imageButton_recycler_discuss_good"
             android:layout_width="20dp"
             android:layout_height="20dp"

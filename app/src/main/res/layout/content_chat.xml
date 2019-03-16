@@ -33,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:minHeight="50dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -70,7 +69,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout_chat_more"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:visibility="gone">
 

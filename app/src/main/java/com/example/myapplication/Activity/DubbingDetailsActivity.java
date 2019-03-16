@@ -1,5 +1,6 @@
 package com.example.myapplication.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -56,7 +57,32 @@ public class DubbingDetailsActivity extends AppCompatActivity {
         adapterDiscuss = new MyAdapterDiscuss(this, new MyAdapterDiscuss.IOnDiscussClickListener() {
             @Override
             public void OnClick(View view) {
-
+                Intent intent = null;
+                switch (view.getId()) {
+                    // TODO: 2019/3/12
+                    case R.id.imageButton_recycler_discuss_user_head:
+                        Log.e(TAG, "OnClick: user head");
+                        intent = new Intent(DubbingDetailsActivity.this, UserDetailsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.textView_recycler_discuss_title:
+                        intent = new Intent(DubbingDetailsActivity.this, UserDetailsActivity.class);
+                        startActivity(intent);
+                        Log.e(TAG, "OnClick: user name");
+                        break;
+                    case R.id.textView_recycler_discuss_user_comment:
+                        Log.e(TAG, "OnClick: user comment");
+                        break;
+                    case R.id.imageButton_recycler_discuss_good:
+                        Log.e(TAG, "OnClick: good");
+                        break;
+                    case R.id.tickerView_recycler_discuss_good_num:
+                        Log.e(TAG, "OnClick: good num");
+                        break;
+                    case R.id.cardView_recycler_view_discuss:
+                        Log.e(TAG, "OnClick: card view");
+                        break;
+                }
             }
         });
         mRV.setLayoutManager(new LinearLayoutManager(this));
@@ -73,6 +99,8 @@ public class DubbingDetailsActivity extends AppCompatActivity {
                 case R.id.imageView_dubbing_details_user_head:
                     // TODO: 2019/3/11
                     Log.e(TAG, "onClick: user head");
+                    Intent intent = new Intent(DubbingDetailsActivity.this,UserDetailsActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.imageButton_dubbing_details_follow:
                     // TODO: 2019/3/11

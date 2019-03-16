@@ -70,7 +70,7 @@ public class MyAdapterDiscover extends RecyclerView.Adapter<MyAdapterDiscover.Vi
     //总共的评论数
     @Override
     public int getItemCount() {
-        return 15;
+        return 5;
     }
 
     public interface IOnDiscoverClickListener {

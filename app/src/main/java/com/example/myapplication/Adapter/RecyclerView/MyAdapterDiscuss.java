@@ -32,11 +32,26 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapterDiscuss.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull final MyAdapterDiscuss.ViewHolder viewHolder, final int i) {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 iOnDiscussClickListener.OnClick(v);
+                switch (v.getId()) {
+                    case R.id.imageButton_recycler_discuss_good:
+                        if (!viewHolder.Gooded) {
+                            viewHolder.Gooded = true;
+                            viewHolder.mTVGoodNum.setText(String.valueOf(Integer.valueOf(viewHolder.mTVGoodNum.getText()) + 1));
+                        } else {
+                            viewHolder.Gooded = false;
+                            viewHolder.mTVGoodNum.setText(String.valueOf(Integer.valueOf(viewHolder.mTVGoodNum.getText()) - 1));
+                        }
+                        // TODO: 2019/3/16
+                        //notifyDataSetChanged();
+                        notifyItemChanged(i);
+                        break;
+                }
+
             }
         };
         viewHolder.mIBUserHead.setOnClickListener(onClickListener);
@@ -46,6 +61,8 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
         viewHolder.mTVGoodNum.setOnClickListener(onClickListener);
         viewHolder.mTVGoodNum.setCharacterLists(TickerUtils.provideNumberList());
         viewHolder.mCV.setOnClickListener(onClickListener);
+
+        viewHolder.mTVGoodNum.setText(i + "");
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -54,12 +71,13 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
         private TextView mTvUserName, mTvUserComment;
         private TickerView mTVGoodNum;
         private CardView mCV;
+        private Boolean Gooded = false;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mIBUserHead = itemView.findViewById(R.id.imageButton_recycler_discover_user_head);
+            mIBUserHead = itemView.findViewById(R.id.imageButton_recycler_discuss_user_head);
             mIBGood = itemView.findViewById(R.id.imageButton_recycler_discuss_good);
-            mTvUserName = itemView.findViewById(R.id.textView_recycler_discover_title);
+            mTvUserName = itemView.findViewById(R.id.textView_recycler_discuss_title);
             mTvUserComment = itemView.findViewById(R.id.textView_recycler_discuss_user_comment);
             mTVGoodNum = itemView.findViewById(R.id.tickerView_recycler_discuss_good_num);
             mCV = itemView.findViewById(R.id.cardView_recycler_view_discuss);
@@ -69,7 +87,7 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
     //总共的评论数
     @Override
     public int getItemCount() {
-        return 30;
+        return 10;
     }
 
     public interface IOnDiscussClickListener {

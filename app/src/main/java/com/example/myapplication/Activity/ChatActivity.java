@@ -1,5 +1,7 @@
 package com.example.myapplication.Activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
@@ -17,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Util.SoftKeyBoardListener;
 
 import java.util.Objects;
 
@@ -27,8 +31,6 @@ public class ChatActivity extends AppCompatActivity {
     private EditText mET;
     private LinearLayout mLLMore;
     private InputMethodManager inputMethodManager;
-    private int height = 200;
-    private int bottomHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,29 +39,41 @@ public class ChatActivity extends AppCompatActivity {
         initListener();
     }
 
-    private void initListener() {
-        MyOnClick myOnClick = new MyOnClick();
-        mIBMore.setOnClickListener(myOnClick);
-        mIBSend.setOnClickListener(myOnClick);
-        mET.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Rect rect = new Rect();
-                ChatActivity.this.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-                int screenHeight = ChatActivity.this.getWindow().getDecorView().getRootView().getHeight();
-                int heightDifference = screenHeight - rect.bottom;
-                Log.e(TAG, "onGlobalLayout: " + heightDifference);
-                //刚进入界面获取底部高度
-                if (heightDifference < 500) {
-                    bottomHeight = heightDifference;
-                }
-                //大于本来的高度
-                if (heightDifference > 200) {
-                    height = heightDifference - bottomHeight;
-                    mLLMore.getLayoutParams().height = height;
-                }
+    private class MySoftKeyBoardListener implements SoftKeyBoardListener.OnSoftKeyBoardChangeListener {
+
+        @Override
+        public void keyBoardShow(int height) {
+            mLLMore.getLayoutParams().height = height;
+            mLLMore.setVisibility(View.GONE);
+        }
+
+        @Override
+        public void keyBoardHide(int height) {
+        }
+    }
+
+    private class MyOnClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.imageButton_chat_more:
+                    hideInput();
+                    Log.e(TAG, "onClick: " + mLLMore.getVisibility() + "  " + mLLMore.getLayoutParams().height);
+                    if (mLLMore.getVisibility() == View.GONE) {
+                        mLLMore.setVisibility(View.VISIBLE);
+                    } else {
+                        mLLMore.setVisibility(View.GONE);
+                    }
+                    break;
+                case R.id.imageButton_chat_send:
+                    // TODO: 2019/3/12 重写发送事件
+                    Log.e(TAG, "onClick: send");
+                    break;
+                case R.id.editText_chat_input_message:
+                    Log.e(TAG, "onClick: edit text");
+                    break;
             }
-        });
+        }
 
     }
 
@@ -70,6 +84,27 @@ public class ChatActivity extends AppCompatActivity {
         if (inputMethodManager.isActive()) {
             inputMethodManager.hideSoftInputFromWindow(mET.getWindowToken(), 0);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.tool_bar_chat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_chat_call:
+                Log.e(TAG, "onOptionsItemSelected: call");
+                return true;
+            case R.id.menu_chat_user_head:
+                Log.e(TAG, "onOptionsItemSelected: user head");
+                Intent intent = new Intent(ChatActivity.this, UserDetailsActivity.class);
+                startActivity(intent);
+                return true;
+        }
+        return false;
     }
 
     private void initView() {
@@ -91,44 +126,12 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.tool_bar_chat, menu);
-        return true;
+    private void initListener() {
+        MyOnClick myOnClick = new MyOnClick();
+        MySoftKeyBoardListener mySoftKeyBoardListener = new MySoftKeyBoardListener();
+        mIBMore.setOnClickListener(myOnClick);
+        mIBSend.setOnClickListener(myOnClick);
+        SoftKeyBoardListener.setListener(this, mySoftKeyBoardListener);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_chat_call:
-                Log.e(TAG, "onOptionsItemSelected: call");
-                return true;
-            case R.id.menu_chat_user_head:
-                Log.e(TAG, "onOptionsItemSelected: user head");
-                return true;
-        }
-        return false;
-    }
-
-    private class MyOnClick implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.imageButton_chat_more:
-                    hideInput();
-                    mLLMore.getLayoutParams().height = height;
-                    if (mLLMore.getVisibility() == View.GONE) {
-                        mLLMore.setVisibility(View.VISIBLE);
-                    } else {
-                        mLLMore.setVisibility(View.GONE);
-                    }
-                    break;
-                case R.id.imageButton_chat_send:
-                    // TODO: 2019/3/12 重写发送事件
-                    Log.e(TAG, "onClick: send");
-                    break;
-            }
-        }
-    }
 }

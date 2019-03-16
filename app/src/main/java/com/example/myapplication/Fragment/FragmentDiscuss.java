@@ -1,6 +1,7 @@
 package com.example.myapplication.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.myapplication.Activity.UserDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterDiscuss;
 import com.example.myapplication.R;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -25,24 +27,16 @@ public class FragmentDiscuss extends Fragment {
     private RecyclerView mRV;
     private SmartRefreshLayout mSRL;
     private MyAdapterDiscuss adapterDiscuss;
-    private IOnClickListener iOnClickListener;
-    private IOnRefreshLoadMoreListener iOnRefreshLoadMoreListener;
+    private IDiscussListeners iDiscussListeners;
     private ImageView mIV;
 
     public FragmentDiscuss() {
     }
 
     @SuppressLint("ValidFragment")
-    public FragmentDiscuss(IOnClickListener i) {
-        this.iOnClickListener = i;
+    public FragmentDiscuss(IDiscussListeners iDiscussListeners){
+        this.iDiscussListeners = iDiscussListeners;
     }
-
-    @SuppressLint("ValidFragment")
-    public FragmentDiscuss(IOnClickListener i, IOnRefreshLoadMoreListener iOnRefreshLoadMoreListener) {
-        this.iOnClickListener = i;
-        this.iOnRefreshLoadMoreListener = iOnRefreshLoadMoreListener;
-    }
-
 
     @Nullable
     @Override
@@ -56,18 +50,23 @@ public class FragmentDiscuss extends Fragment {
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iOnClickListener.OnClick(v);
+                iDiscussListeners.OnClick(v);
             }
         };
         adapterDiscuss = new MyAdapterDiscuss(getContext(), new MyAdapterDiscuss.IOnDiscussClickListener() {
             @Override
             public void OnClick(View view) {
+                Intent intent = null;
                 switch (view.getId()) {
                     // TODO: 2019/3/12  
-                    case R.id.imageButton_recycler_discover_user_head:
+                    case R.id.imageButton_recycler_discuss_user_head:
                         Log.e(TAG, "OnClick: user head");
+                        intent = new Intent(getContext(), UserDetailsActivity.class);
+                        startActivity(intent);
                         break;
-                    case R.id.textView_recycler_discover_title:
+                    case R.id.textView_recycler_discuss_title:
+                        intent = new Intent(getContext(), UserDetailsActivity.class);
+                        startActivity(intent);
                         Log.e(TAG, "OnClick: user name");
                         break;
                     case R.id.textView_recycler_discuss_user_comment:
@@ -96,24 +95,22 @@ public class FragmentDiscuss extends Fragment {
         mSRL.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                iOnRefreshLoadMoreListener.OnRefresh(refreshLayout);
+                iDiscussListeners.OnRefresh(refreshLayout);
             }
         });
         mSRL.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                iOnRefreshLoadMoreListener.OnLoadMore(refreshLayout);
+                iDiscussListeners.OnLoadMore(refreshLayout);
             }
         });
     }
-
-    public interface IOnClickListener {
+    public interface IDiscussListeners {
         void OnClick(View view);
-    }
 
-    public interface IOnRefreshLoadMoreListener {
         void OnRefresh(RefreshLayout refreshLayout);
 
         void OnLoadMore(RefreshLayout refreshLayout);
+
     }
 }

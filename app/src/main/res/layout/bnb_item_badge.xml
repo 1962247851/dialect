@@ -31,14 +31,14 @@
         </LinearLayout>
 
         <TextView
+            android:textColor="@color/XFrame_white"
             android:id="@+id/bnb_item_badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="-5dp"
             android:layout_toEndOf="@id/linearLayout_bnb_item_badge"
             android:background="@drawable/bg_circle"
-            android:gravity="center"
-            android:textColor="@color/XFrame_white" />
+            android:gravity="center" />
     </RelativeLayout>
 
 </me.sugarkawhi.bottomnavigationbar.BottomNavigationBar>

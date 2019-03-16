@@ -4,8 +4,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/cardView_recycler_view_dynamic"
     android:layout_margin="10dp"
-    android:clickable="true"
-    android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout

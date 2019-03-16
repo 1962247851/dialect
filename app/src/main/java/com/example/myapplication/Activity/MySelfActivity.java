@@ -93,6 +93,9 @@ public class MySelfActivity extends AppCompatActivity {
                 case R.id.textView_myself_follow_num:
                     Log.e(TAG, "onClick: follow num");
                     break;
+                case R.id.textView_myself_follow:
+                    Log.e(TAG, "onClick: follow");
+                    break;
                 case R.id.textView_myself_message:
                     Log.e(TAG, "onClick: message");
                     break;
