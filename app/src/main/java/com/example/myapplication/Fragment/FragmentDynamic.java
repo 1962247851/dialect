@@ -22,8 +22,12 @@ import com.example.myapplication.Adapter.RecyclerView.MyAdapterDynamic;
 import com.example.myapplication.R;
 import com.example.myapplication.Util.GlobalUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -137,16 +141,60 @@ public class FragmentDynamic extends Fragment {
         mRV.setAdapter(adapterDynamic);
 
         //设置监听器
-        mSRL.setOnRefreshListener(new OnRefreshListener() {
+        mSRL.setOnMultiPurposeListener(new OnMultiPurposeListener() {
             @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                iDynamicListeners.OnRefresh(refreshLayout);
+            public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
+
             }
-        });
-        mSRL.setOnLoadMoreListener(new OnLoadMoreListener() {
+
+            @Override
+            public void onHeaderReleased(RefreshHeader header, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderFinish(RefreshHeader header, boolean success) {
+
+            }
+
+            @Override
+            public void onFooterMoving(RefreshFooter footer, boolean isDragging, float percent, int offset, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterReleased(RefreshFooter footer, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterStartAnimator(RefreshFooter footer, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterFinish(RefreshFooter footer, boolean success) {
+
+            }
+
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                iDynamicListeners.OnLoadMore(refreshLayout);
+
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+            }
+
+            @Override
+            public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState, @NonNull RefreshState newState) {
+                iDynamicListeners.OnStageChange(refreshLayout, oldState, newState);
             }
         });
         mB.setOnClickListener(onClickListener);
@@ -161,11 +209,9 @@ public class FragmentDynamic extends Fragment {
     public interface IDynamicListeners {
         void OnClick(View view);
 
-        void OnRefresh(RefreshLayout refreshLayout);
-
-        void OnLoadMore(RefreshLayout refreshLayout);
-
         void OnBanner(int position);
+
+        void OnStageChange(RefreshLayout refreshLayout, RefreshState oldStage, RefreshState newStage);
     }
 
 }

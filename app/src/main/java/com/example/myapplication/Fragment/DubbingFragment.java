@@ -14,6 +14,8 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.example.myapplication.R;
+import com.robinhood.ticker.TickerUtils;
+import com.robinhood.ticker.TickerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +33,7 @@ public class DubbingFragment extends Fragment {
 
 
     private ImageButton mIBBack, mIBReStart, mIBStart, mIBFinish;
-    private TextView mTvCountDownNum;
+    private TickerView mTVCountDownNum;
     private VideoView mVV;
     private IOnClickListener iOnClickListener;
 
@@ -81,14 +83,15 @@ public class DubbingFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         MyOnClick myOnClick = new MyOnClick();
-        mTvCountDownNum = view.findViewById(R.id.textVIew_dubbing_count_down_num);
+        mTVCountDownNum = view.findViewById(R.id.tickerView_dubbing_count_down_num);
+        mTVCountDownNum.setCharacterLists(TickerUtils.provideNumberList());
         mIBBack = view.findViewById(R.id.imageButton_dubbing_back);
         mIBReStart = view.findViewById(R.id.imageButton_dubbing_restart);
         mIBStart = view.findViewById(R.id.imageButton_dubbing_start);
         mIBFinish = view.findViewById(R.id.imageButton_dubbing_finish);
         mVV = view.findViewById(R.id.videoView_dubbing);
 
-        mTvCountDownNum.setOnClickListener(myOnClick);
+        mTVCountDownNum.setOnClickListener(myOnClick);
         mIBBack.setOnClickListener(myOnClick);
         mIBReStart.setOnClickListener(myOnClick);
         mIBStart.setOnClickListener(myOnClick);

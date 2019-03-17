@@ -7,11 +7,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.example.myapplication.Fragment.DubbingFragment;
 import com.example.myapplication.Fragment.MainFragment;
 import com.example.myapplication.R;
 import com.example.myapplication.Util.GlobalUtil;
+import com.robinhood.ticker.TickerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         initListener();
     }
 
@@ -117,9 +120,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnClick(View view) {
                 switch (view.getId()) {
-                    case R.id.textVIew_dubbing_count_down_num:
+                    case R.id.tickerView_dubbing_count_down_num:
                         // TODO: 2019/3/11
                         Log.e(TAG, "onClick: count down num");
+                        TickerView tickerView = (TickerView) view;
+                        tickerView.setText(String.valueOf(Integer.valueOf(tickerView.getText()) + 1));
                         break;
                     case R.id.imageButton_dubbing_back:
                         // TODO: 2019/3/11

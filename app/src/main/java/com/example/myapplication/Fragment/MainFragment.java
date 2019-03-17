@@ -21,6 +21,7 @@ import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapter;
 import com.example.myapplication.R;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.youth.xframe.XFrame;
 import com.youth.xframe.widget.XToast;
 
@@ -87,6 +88,7 @@ public class MainFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        XFrame.init(getContext());
     }
 
     @Override
@@ -116,9 +118,8 @@ public class MainFragment extends Fragment {
             }
 
             @Override
-            public void OnRefresh(RefreshLayout refreshLayout) {
-                // TODO: 2019/3/11 重写发现页面下拉刷新事件 可以通过refreshLayout.getState()获取状态
-                switch (refreshLayout.getState()) {
+            public void OnStageChange(RefreshLayout refreshLayout, RefreshState oldStage, RefreshState newStage) {
+                switch (newStage) {
                     case Refreshing:
 //                        Handler handler = new Handler();
 //                        Runnable runnable = new Runnable() {
@@ -129,36 +130,22 @@ public class MainFragment extends Fragment {
 //                        };
 //                        handler.postDelayed(runnable, 1000);
                         refreshLayout.finishRefresh(1000, true);
-                        Log.e(TAG, "OnRefresh: refreshing");
+                        Toast.makeText(getContext(), "刷新中", Toast.LENGTH_SHORT).show();
                         break;
                     case RefreshFinish:
-                        Log.e(TAG, "OnRefresh: finish refresh");
+                        Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
                         break;
                     case TwoLevel:
-                        Toast.makeText(getContext(), "two level", Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "OnRefresh: two level");
+                        Toast.makeText(getContext(), "二楼", Toast.LENGTH_SHORT).show();
                         break;
-                }
-            }
-
-            @Override
-            public void OnLoadMore(final RefreshLayout refreshLayout) {
-                // TODO: 2019/3/11 与下拉同理
-                switch (refreshLayout.getState()) {
                     case Loading:
-                        Handler handler = new Handler();
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                refreshLayout.finishLoadMore(true);
-                            }
-                        };
-                        handler.postDelayed(runnable, 1000);
-                        Log.e(TAG, "OnLoadMore: loading");
+                        refreshLayout.finishLoadMore(1000, true, true);
+                        Toast.makeText(getContext(), "加载中", Toast.LENGTH_SHORT).show();
                         break;
                     case LoadFinish:
-                        Log.e(TAG, "OnLoadMore: load finish");
+                        Toast.makeText(getContext(), "加载完成", Toast.LENGTH_SHORT).show();
                         break;
+
                 }
             }
         };
@@ -173,52 +160,37 @@ public class MainFragment extends Fragment {
             }
 
             @Override
-            public void OnRefresh(final RefreshLayout refreshLayout) {
-                // TODO: 2019/3/11 重写发现页面下拉刷新事件 可以通过refreshLayout.getState()获取状态
-                switch (refreshLayout.getState()) {
-                    case Refreshing:
-                        Handler handler = new Handler();
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                refreshLayout.finishRefresh(true);
-                            }
-                        };
-                        handler.postDelayed(runnable, 1000);
-                        Log.e(TAG, "OnRefresh: refreshing");
-                        break;
-                    case RefreshFinish:
-                        Log.e(TAG, "OnRefresh: finish refresh");
-                        break;
-                }
-            }
-
-            @Override
-            public void OnLoadMore(final RefreshLayout refreshLayout) {
-                // TODO: 2019/3/11 与下拉同理
-                switch (refreshLayout.getState()) {
-                    case Loading:
-                        Handler handler = new Handler();
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                refreshLayout.finishLoadMore(true);
-                            }
-                        };
-                        handler.postDelayed(runnable, 1000);
-                        Log.e(TAG, "OnLoadMore: loading");
-                        break;
-                    case LoadFinish:
-                        Log.e(TAG, "OnLoadMore: load finish");
-                        break;
-
-                }
-            }
-
-
-            @Override
             public void OnBanner(int position) {
                 Log.e(TAG, "OnBanner: banner position" + position);
+            }
+
+            @Override
+            public void OnStageChange(RefreshLayout refreshLayout, RefreshState oldStage, RefreshState newStage) {
+                switch (newStage) {
+                    case Refreshing:
+//                        Handler handler = new Handler();
+//                        Runnable runnable = new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                refreshLayout.finishRefresh(true);
+//                            }
+//                        };
+//                        handler.postDelayed(runnable, 1000);
+                        refreshLayout.finishRefresh(1000, true);
+                        Toast.makeText(getContext(), "刷新中", Toast.LENGTH_SHORT).show();
+                        break;
+                    case RefreshFinish:
+                        Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
+                        break;
+                    case Loading:
+                        refreshLayout.finishLoadMore(1000, true, true);
+                        Toast.makeText(getContext(), "加载中", Toast.LENGTH_SHORT).show();
+                        break;
+                    case LoadFinish:
+                        Toast.makeText(getContext(), "加载完成", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
             }
         };
         FragmentDynamic.IDynamicListeners iDynamicListeners = new FragmentDynamic.IDynamicListeners() {
@@ -232,52 +204,39 @@ public class MainFragment extends Fragment {
             }
 
             @Override
-            public void OnRefresh(final RefreshLayout refreshLayout) {
-                // TODO: 2019/3/11 重写发现页面下拉刷新事件 可以通过refreshLayout.getState()获取状态
-                switch (refreshLayout.getState()) {
-                    case Refreshing:
-                        Handler handler = new Handler();
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                refreshLayout.finishRefresh(true);
-                            }
-                        };
-                        handler.postDelayed(runnable, 1000);
-                        Log.e(TAG, "OnRefresh: refreshing");
-                        break;
-                    case RefreshFinish:
-                        Log.e(TAG, "OnRefresh: finish refresh");
-                        break;
-                }
-            }
-
-            @Override
-            public void OnLoadMore(final RefreshLayout refreshLayout) {
-                // TODO: 2019/3/11 与下拉同理
-                switch (refreshLayout.getState()) {
-                    case Loading:
-                        Handler handler = new Handler();
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                refreshLayout.finishLoadMore(true);
-                            }
-                        };
-                        handler.postDelayed(runnable, 1000);
-                        Log.e(TAG, "OnLoadMore: loading");
-                        break;
-                    case LoadFinish:
-                        Log.e(TAG, "OnLoadMore: load finish");
-                        break;
-
-                }
-            }
-
-            @Override
             public void OnBanner(int position) {
                 Log.e(TAG, "OnBanner: banner position " + position);
             }
+
+            @Override
+            public void OnStageChange(RefreshLayout refreshLayout, RefreshState oldStage, RefreshState newStage) {
+                switch (newStage) {
+                    case Refreshing:
+//                        Handler handler = new Handler();
+//                        Runnable runnable = new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                refreshLayout.finishRefresh(true);
+//                            }
+//                        };
+//                        handler.postDelayed(runnable, 1000);
+                        refreshLayout.finishRefresh(1000, true);
+                        Toast.makeText(getContext(), "刷新中", Toast.LENGTH_SHORT).show();
+                        break;
+                    case RefreshFinish:
+                        Toast.makeText(getContext(), "刷新完成", Toast.LENGTH_SHORT).show();
+                        break;
+                    case Loading:
+                        refreshLayout.finishLoadMore(1000, true, true);
+                        Toast.makeText(getContext(), "加载中", Toast.LENGTH_SHORT).show();
+                        break;
+                    case LoadFinish:
+                        Toast.makeText(getContext(), "加载完成", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+            }
+
         };
 
         //实例化三个Fragment
@@ -290,7 +249,6 @@ public class MainFragment extends Fragment {
         fragments.add(fragmentDynamic);
 
         pagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), fragments);
-
 
         mVP.setOffscreenPageLimit(3);
         mVP.setAdapter(pagerAdapter);

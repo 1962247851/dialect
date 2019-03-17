@@ -18,9 +18,11 @@ import com.example.myapplication.Activity.UserDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterDiscuss;
 import com.example.myapplication.R;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
+import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 
 public class FragmentDiscuss extends Fragment {
     private static final String TAG = "FragmentDiscuss----->";
@@ -34,7 +36,7 @@ public class FragmentDiscuss extends Fragment {
     }
 
     @SuppressLint("ValidFragment")
-    public FragmentDiscuss(IDiscussListeners iDiscussListeners){
+    public FragmentDiscuss(IDiscussListeners iDiscussListeners) {
         this.iDiscussListeners = iDiscussListeners;
     }
 
@@ -91,26 +93,69 @@ public class FragmentDiscuss extends Fragment {
         mRV.setAdapter(adapterDiscuss);
 
         //设置监听事件需要在activity中实现接口
-        mIV.setOnClickListener(clickListener);
-        mSRL.setOnRefreshListener(new OnRefreshListener() {
+        mSRL.setOnMultiPurposeListener(new OnMultiPurposeListener() {
             @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                iDiscussListeners.OnRefresh(refreshLayout);
+            public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState, @NonNull RefreshState newState) {
+                iDiscussListeners.OnStageChange(refreshLayout, oldState, newState);
             }
-        });
-        mSRL.setOnLoadMoreListener(new OnLoadMoreListener() {
+
+            @Override
+            public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderReleased(RefreshHeader header, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderFinish(RefreshHeader header, boolean success) {
+
+            }
+
+            @Override
+            public void onFooterMoving(RefreshFooter footer, boolean isDragging, float percent, int offset, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterReleased(RefreshFooter footer, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterStartAnimator(RefreshFooter footer, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterFinish(RefreshFooter footer, boolean success) {
+
+            }
+
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                iDiscussListeners.OnLoadMore(refreshLayout);
+
             }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+            }
+
         });
+        mIV.setOnClickListener(clickListener);
     }
+
     public interface IDiscussListeners {
         void OnClick(View view);
 
-        void OnRefresh(RefreshLayout refreshLayout);
-
-        void OnLoadMore(RefreshLayout refreshLayout);
-
+        void OnStageChange(RefreshLayout refreshLayout, RefreshState oldStage, RefreshState newStage);
     }
 }

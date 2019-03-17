@@ -9,13 +9,13 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppThemeNoActionBar.AppBarOverlay">
+        android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_chat"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
             app:popupTheme="@style/AppThemeNoActionBar.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
