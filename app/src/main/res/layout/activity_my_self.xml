@@ -12,16 +12,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            app:contentScrim="@color/colorAccent"
             app:expandedTitleGravity="top|end"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="false">
 
+            <ImageView
+                android:id="@+id/imageView_mySelf_user_head_background"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@drawable/user_background" />
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolBar_myself"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/XFrame_white"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:paddingTop="20dp"
                 app:layout_collapseMode="pin" />
 
 
@@ -29,7 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
-                android:background="@color/XFrame_white"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
@@ -38,7 +43,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginBottom="30dp"
-                    android:background="@color/colorPrimary" />
+                    android:background="@drawable/circle_background" />
 
                 <TextView
                     android:id="@+id/textView_myself_user_name"

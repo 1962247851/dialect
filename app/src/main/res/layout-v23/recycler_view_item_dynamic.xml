@@ -20,6 +20,8 @@
             android:gravity="center_vertical">
 
             <ImageButton
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/circle_background"
                 android:id="@+id/imageButton_recycler_dynamic_user_head"
                 android:layout_width="50dp"
                 android:layout_height="50dp" />

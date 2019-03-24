@@ -45,27 +45,27 @@ public class MainActivity extends AppCompatActivity {
         List<BottomNavigationEntity> mEntities = new ArrayList<>();
         mEntities.add(new BottomNavigationEntity(
                 "首页",
-                R.drawable.ic_home_black_24dp,
-                R.drawable.ic_home_black_24dp
+                R.drawable.icon_home,
+                R.drawable.icon_home
         ));
         mEntities.add(new BottomNavigationEntity(
                 "配音",
-                R.drawable.ic_dashboard_black_24dp,
-                R.drawable.ic_dashboard_black_24dp
+                R.drawable.icon_dubibng,
+                R.drawable.icon_dubibng
         ));
         mEntities.add(new BottomNavigationEntity(
-                R.drawable.ic_add_circle_48dp,
-                R.drawable.ic_add_circle_48dp
+                R.drawable.icon_add,
+                R.drawable.icon_add
         ));
         mEntities.add(new BottomNavigationEntity(
                 "听音",
-                R.drawable.ic_home_black_24dp,
-                R.drawable.ic_home_black_24dp
+                R.drawable.icon_story,
+                R.drawable.icon_story
         ));
         mEntities.add(new BottomNavigationEntity(
                 "比音",
-                R.drawable.ic_home_black_24dp,
-                R.drawable.ic_home_black_24dp, 100
+                R.drawable.icon_bifangyan,
+                R.drawable.icon_bifangyan, 100
         ));
         bottomNavigationBar.setEntities(mEntities);
         bottomNavigationBar.setCurrentPosition(0);

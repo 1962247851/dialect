@@ -27,7 +27,7 @@
         <activity
             android:name=".Activity.ChatActivity"
             android:label="@string/title_activity_chat"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Activity.DubbingDetailsActivity" />
         <activity android:name=".Activity.MySelfActivity" />
         <activity android:name=".Activity.LoginActivity" />

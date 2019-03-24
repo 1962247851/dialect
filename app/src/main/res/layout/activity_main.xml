@@ -15,7 +15,7 @@
     <me.sugarkawhi.bottomnavigationbar.BottomNavigationBar
         android:id="@+id/navigationBar_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="@color/colorAccent"
         app:bnb_anim="false"
