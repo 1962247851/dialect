@@ -9,6 +9,8 @@ public class GlobalUtil {
         public static final String MAIN = "MainFragment";
         public static final String SETTING = "SettingFragment";
         public static final String USER_DETAILS = "UserDetailsFragment";
+        public static final String AUDITION = "AuditionFragment";
+        public static final String COMPARE = "CompareFragment";
     }
 
     public static final int INTENT_TYPE_DUBBING_DETAILS = 0;

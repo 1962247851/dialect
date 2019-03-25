@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.example.myapplication.Fragment.AuditionFragment;
+import com.example.myapplication.Fragment.CompareFragment;
 import com.example.myapplication.Fragment.DubbingFragment;
 import com.example.myapplication.Fragment.MainFragment;
 import com.example.myapplication.R;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         initListener();
     }
 
@@ -88,19 +90,17 @@ public class MainActivity extends AppCompatActivity {
                         switchFragment(GlobalUtil.FRAGMENT_TAG.DUBBING);
                         break;
                     case 2:
+                        // TODO: 2019/3/11
                         bottomNavigationBar.setCurrentPosition(pastPosition);
                         Log.e(TAG, "onNavigationItemSelected: More");
                         Intent intent = new Intent(MainActivity.this, ChatActivity.class);
                         startActivity(intent);
-                        // TODO: 2019/3/11
                         break;
                     case 3:
-                        Log.e(TAG, "onNavigationItemSelected: Audition");
-                        // TODO: 2019/3/11
+                        switchFragment(GlobalUtil.FRAGMENT_TAG.AUDITION);
                         break;
                     case 4:
-                        Log.e(TAG, "onNavigationItemSelected: Compare");
-                        // TODO: 2019/3/11
+                        switchFragment(GlobalUtil.FRAGMENT_TAG.COMPARE);
                         break;
                 }
                 if (position != 2) {
@@ -163,10 +163,22 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new DubbingFragment(iOnClickListener);
                 }
                 break;
+            case GlobalUtil.FRAGMENT_TAG.AUDITION:
+                fragment = fragmentManager.findFragmentByTag(currentFragmentTag);
+                if (fragment == null) {
+                    fragment = new AuditionFragment();
+                }
+                break;
+            case GlobalUtil.FRAGMENT_TAG.COMPARE:
+                fragment = fragmentManager.findFragmentByTag(currentFragmentTag);
+                if (fragment == null) {
+                    fragment = new CompareFragment();
+                }
+                break;
         }
         if (currentFragment != fragment) {
             if (!fragment.isAdded()) {
-                fragmentManager.beginTransaction().hide(currentFragment).add(R.id.frameLayout_main, fragment).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().hide(currentFragment).add(R.id.frameLayout_main, fragment,currentFragmentTag).commitAllowingStateLoss();
             } else {
                 fragmentManager.beginTransaction().hide(currentFragment).show(fragment).commitAllowingStateLoss();
             }

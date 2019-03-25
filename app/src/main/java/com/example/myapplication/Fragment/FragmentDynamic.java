@@ -125,6 +125,8 @@ public class FragmentDynamic extends Fragment {
             @Override
             public void OnClick(View v, int position) {
                 // TODO: 2019/3/18
+                Intent intent = new Intent(getContext(),UserDetailsActivity.class);
+                startActivity(intent);
                 Log.e(TAG, "OnClick: user head " + position);
             }
         });

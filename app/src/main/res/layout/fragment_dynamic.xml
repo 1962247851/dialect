@@ -26,7 +26,7 @@
                 <android.support.design.widget.CollapsingToolbarLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="60dp"
+                    android:minHeight="55dp"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                     <RelativeLayout
@@ -41,20 +41,26 @@
                             android:padding="5dp"
                             app:indicator_drawable_selected="@drawable/indicator_selected"
                             app:indicator_drawable_unselected="@drawable/indicator_un_selected" />
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@color/XFrame_white"
+    android:layout_width="match_parent"
+    android:layout_below="@id/banner_fragment_dynamic"
+    android:layout_height="55dp">
+    <TextView
+        android:paddingStart="5dp"
+        android:paddingEnd="0dp"
+        android:textColor="@color/colorBlackText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的关注：" />
 
-                        <TextView
-                            android:layout_marginStart="5dp"
-                            android:textColor="@color/colorBlackText"
-                            android:layout_alignTop="@+id/recyclerView_fragment_dynamic_follow"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="我的关注：" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_fragment_dynamic_follow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
 
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/recyclerView_fragment_dynamic_follow"
-                            android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_below="@id/banner_fragment_dynamic" />
 
                     </RelativeLayout>
 

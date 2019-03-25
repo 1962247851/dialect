@@ -4,7 +4,6 @@ package com.example.myapplication.Fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,13 +16,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.myapplication.Activity.MySelfActivity;
-import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapter;
+import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapterHome;
 import com.example.myapplication.R;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.youth.xframe.XFrame;
-import com.youth.xframe.widget.XToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +42,7 @@ public class MainFragment extends Fragment {
     private SlidingTabLayout mTL;
     private List<Fragment> fragments = new ArrayList<>();
     private ViewPager mVP;
-    private MyFragmentPagerAdapter pagerAdapter;
+    private MyFragmentPagerAdapterHome pagerAdapter;
     private Button mBtnUserHead, mBtnSearch;
     private IOnClickListener iOnClickListener;
 
@@ -100,11 +98,10 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        mBtnUserHead = view.findViewById(R.id.button_main_user_head);
-        mBtnSearch = view.findViewById(R.id.button_main_search);
+        mBtnUserHead = view.findViewById(R.id.button_fragment_main_user_head);
+        mBtnSearch = view.findViewById(R.id.button_fragment_main_search);
         mTL = view.findViewById(R.id.tabLayout_main);
         mVP = view.findViewById(R.id.viewPager_main);
-
         //设置三个Fragment的接口
         FragmentDiscuss.IDiscussListeners iDiscussListeners = new FragmentDiscuss.IDiscussListeners() {
             @Override
@@ -248,7 +245,7 @@ public class MainFragment extends Fragment {
         fragments.add(fragmentDiscover);
         fragments.add(fragmentDynamic);
 
-        pagerAdapter = new MyFragmentPagerAdapter(getChildFragmentManager(), fragments);
+        pagerAdapter = new MyFragmentPagerAdapterHome(getChildFragmentManager(), fragments);
 
         mVP.setOffscreenPageLimit(3);
         mVP.setAdapter(pagerAdapter);
@@ -262,13 +259,13 @@ public class MainFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.button_main_user_head:
+                case R.id.button_fragment_main_user_head:
                     // TODO: 2019/3/11
                     Log.e(TAG, "onClick: User Head");
                     Intent intent = new Intent(getContext(), MySelfActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.button_main_search:
+                case R.id.button_fragment_main_search:
                     // TODO: 2019/3/11
                     Log.e(TAG, "onClick: Search");
                     break;

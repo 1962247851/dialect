@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout_compare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:minHeight="40dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
+
+                    <Button
+                        android:id="@+id/button_fragment_compare_user_head"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/circle_background"
+                        android:tooltipText="我" />
+
+                    <EditText
+                        android:id="@+id/editText_fragment_compare_search_input"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/button_fragment_compare_user_head"
+                        android:layout_toStartOf="@id/button_fragment_compare_search"
+                        android:layout_toEndOf="@id/button_fragment_compare_user_head"
+                        android:background="@drawable/background_edit_text"
+                        android:hint="输入要搜索的内容"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp" />
+
+                    <Button
+                        android:id="@+id/button_fragment_compare_search"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignTop="@id/button_fragment_compare_user_head"
+                        android:layout_alignBottom="@id/button_fragment_compare_user_head"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/icon_search"
+                        android:tooltipText="搜索" />
+
+                    <com.flyco.tablayout.SlidingTabLayout
+                        android:id="@+id/tabLayout_fragment_compare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_below="@id/button_fragment_compare_user_head"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        app:tl_indicator_width="0dp"
+                        app:tl_textBold="SELECT"
+                        app:tl_textsize="18sp" />
+                </RelativeLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager_fragment_compare"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/appBarLayout_compare"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

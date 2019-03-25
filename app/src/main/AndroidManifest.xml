@@ -7,8 +7,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:configChanges="screenSize|keyboardHidden|orientation"
         android:allowBackup="true"
+        android:configChanges="screenSize|keyboardHidden|orientation"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -16,8 +16,11 @@
         android:theme="@style/AppThemeNoActionBar">
         <activity
             android:name=".Activity.UserDetailsActivity"
-            android:label="@string/title_activity_user_details" />
-        <activity android:name=".Activity.LaunchActivity">
+            android:label="@string/title_activity_user_details"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.LaunchActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,13 +30,24 @@
         <activity
             android:name=".Activity.ChatActivity"
             android:label="@string/title_activity_chat"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".Activity.DubbingDetailsActivity" />
-        <activity android:name=".Activity.MySelfActivity" />
-        <activity android:name=".Activity.LoginActivity" />
         <activity
+            android:name=".Activity.DubbingDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.MySelfActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".Activity.MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

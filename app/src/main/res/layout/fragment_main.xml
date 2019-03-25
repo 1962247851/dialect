@@ -14,38 +14,39 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:fitsSystemWindows="true"
-                android:paddingTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true">
 
                 <Button
-                    android:layout_margin="5dp"
-                    android:id="@+id/button_main_user_head"
+                    android:id="@+id/button_fragment_main_user_head"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_margin="5dp"
                     android:background="@drawable/circle_background"
                     android:tooltipText="我" />
 
 
                 <com.flyco.tablayout.SlidingTabLayout
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/tabLayout_main"
-                    android:layout_alignTop="@id/button_main_user_head"
-                    android:layout_alignBottom="@id/button_main_user_head"
-                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignTop="@id/button_fragment_main_user_head"
+                    android:layout_alignBottom="@id/button_fragment_main_user_head"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
                     app:tl_indicator_width_equal_title="true"
                     app:tl_textBold="SELECT"
                     app:tl_textsize="20sp" />
 
                 <Button
-                    android:background="@drawable/icon_search"
-                    android:id="@+id/button_main_search"
+                    android:id="@+id/button_fragment_main_search"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:layout_alignTop="@id/tabLayout_main"
+                    android:layout_alignBottom="@id/tabLayout_main"
                     android:layout_alignParentEnd="true"
+                    android:background="@drawable/icon_search"
                     android:tooltipText="搜索" />
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
@@ -54,7 +55,7 @@
             android:id="@+id/viewPager_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/appBarLayout_main"
+            android:layout_below="@id/appBarLayout_compare"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.CoordinatorLayout>
