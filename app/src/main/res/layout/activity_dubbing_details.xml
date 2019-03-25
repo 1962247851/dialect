@@ -17,6 +17,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
+                android:background="@drawable/ic_arrow_back"
                 android:id="@+id/imageButton_dubbing_details_back"
                 android:layout_width="40dp"
                 android:layout_height="40dp"

@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.Activity.UserDetailsActivity;
+import com.example.myapplication.Activity.DubbingDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterStaggered;
 import com.example.myapplication.R;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -54,8 +54,8 @@ public class FragmentStaggeredOriginal extends Fragment {
             @Override
             public void OnClick(View v, int position) {
                 // TODO: 2019/3/25
-                Intent intent = new Intent(getContext(), UserDetailsActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getContext(), DubbingDetailsActivity.class);
+                                startActivity(intent);
                 switch (v.getId()) {
                     case R.id.imageView_recycler_staggered:
                         Log.e(TAG, "OnClick: imageView"+position);

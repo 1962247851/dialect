@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -21,14 +20,13 @@ import android.widget.Toast;
 import com.example.myapplication.Activity.MySelfActivity;
 import com.example.myapplication.Activity.UserDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterStaggered;
-import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapterCompare;
 import com.example.myapplication.R;
-import com.flyco.tablayout.SlidingTabLayout;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,8 +48,9 @@ public class AuditionFragment extends Fragment {
     private Button mBtnUserHead, mBtnSearch;
     private RecyclerView recyclerView;
     private EditText editText;
+    private SmartRefreshLayout smartRefreshLayout;
     private OnFragmentInteractionListener mListener;
-    private IOnClickListener iOnClickListener;
+    private IAuditionListener iAuditionListener;
 
     public AuditionFragment() {
         // Required empty public constructor
@@ -59,8 +58,8 @@ public class AuditionFragment extends Fragment {
 
 
     @SuppressLint("ValidFragment")
-    public AuditionFragment(IOnClickListener i) {
-        this.iOnClickListener = i;
+    public AuditionFragment(IAuditionListener i) {
+        this.iAuditionListener = i;
     }
 
     /**
@@ -104,6 +103,7 @@ public class AuditionFragment extends Fragment {
         mBtnUserHead = view.findViewById(R.id.button_fragment_audition_user_head);
         mBtnSearch = view.findViewById(R.id.button_fragment_audition_search);
         editText = view.findViewById(R.id.editText_fragment_audition_search_input);
+        smartRefreshLayout = view.findViewById(R.id.smartRefreshLayout_fragment_audition);
         MyOnClick myOnClick = new MyOnClick();
         mBtnSearch.setOnClickListener(myOnClick);
         mBtnUserHead.setOnClickListener(myOnClick);
@@ -127,6 +127,62 @@ public class AuditionFragment extends Fragment {
                 }
             }
         }));
+        smartRefreshLayout.setOnMultiPurposeListener(new OnMultiPurposeListener() {
+            @Override
+            public void onHeaderMoving(RefreshHeader header, boolean isDragging, float percent, int offset, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderReleased(RefreshHeader header, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderStartAnimator(RefreshHeader header, int headerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onHeaderFinish(RefreshHeader header, boolean success) {
+
+            }
+
+            @Override
+            public void onFooterMoving(RefreshFooter footer, boolean isDragging, float percent, int offset, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterReleased(RefreshFooter footer, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterStartAnimator(RefreshFooter footer, int footerHeight, int maxDragHeight) {
+
+            }
+
+            @Override
+            public void onFooterFinish(RefreshFooter footer, boolean success) {
+
+            }
+
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+            }
+
+            @Override
+            public void onStateChanged(@NonNull RefreshLayout refreshLayout, @NonNull RefreshState oldState, @NonNull RefreshState newState) {
+                iAuditionListener.OnStageChange(refreshLayout, oldState, newState);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -157,22 +213,24 @@ public class AuditionFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public interface IOnClickListener {
+    public interface IAuditionListener {
         // TODO: 2019/3/25 改变参数
         void OnClick(View view);
+
+        void OnStageChange(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState);
     }
 
     private class MyOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.button_fragment_compare_user_head:
+                case R.id.button_fragment_audition_user_head:
                     // TODO: 2019/3/25
                     Log.e(TAG, "onClick: User Head");
                     Intent intent = new Intent(getContext(), MySelfActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.button_fragment_compare_search:
+                case R.id.button_fragment_audition_search:
                     // TODO: 2019/3/25
                     Log.e(TAG, "onClick: Search");
                     Toast.makeText(getContext(), editText.getText(), Toast.LENGTH_SHORT).show();

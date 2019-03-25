@@ -8,6 +8,7 @@
     android:layout_height="match_parent">
 
     <ImageButton
+        android:background="@drawable/ic_arrow_back"
         android:id="@+id/imageButton_login_exit"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -20,8 +21,8 @@
     <ImageView
         android:src="@drawable/logo"
         android:id="@+id/imageView_login_logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_below="@+id/imageButton_login_exit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
@@ -68,6 +69,8 @@
 
 
     <Button
+        android:textSize="20sp"
+        android:background="@drawable/background_login_button"
         android:id="@+id/button_login_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +79,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="50dp"
         android:text="登录"
-        android:textColor="@color/colorBlackText" />
+        android:textColor="@color/colorWhite" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,6 +88,7 @@
         android:gravity="center">
 
         <Button
+            android:background="@null"
             android:id="@+id/button_login_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,9 +98,10 @@
         <View
             android:layout_width="2dp"
             android:layout_height="20dp"
-            android:background="@color/colorGrayText" />
+            android:background="@color/colorBlackText" />
 
         <Button
+            android:background="@null"
             android:id="@+id/button_login_forget_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,6 +117,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -120,7 +126,7 @@
             android:textColor="@color/colorBlackText" />
 
         <LinearLayout
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">

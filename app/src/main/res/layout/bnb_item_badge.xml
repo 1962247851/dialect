@@ -11,6 +11,7 @@
         android:paddingBottom="5dp">
 
         <LinearLayout
+            android:layout_marginTop="-5dp"
             android:id="@+id/linearLayout_bnb_item_badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -19,27 +20,31 @@
             android:orientation="vertical">
 
             <ImageView
+                android:scaleType="fitCenter"
                 android:id="@+id/bnb_item_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="3dp" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/icon_bifangyan" />
 
             <TextView
-                android:gravity="center"
+                android:layout_marginTop="-15dp"
                 android:id="@+id/bnb_item_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:text="比音" />
         </LinearLayout>
 
         <TextView
-            android:textColor="@color/XFrame_white"
             android:id="@+id/bnb_item_badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-5dp"
+            android:layout_marginStart="-8dp"
             android:layout_toEndOf="@id/linearLayout_bnb_item_badge"
             android:background="@drawable/bg_circle"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="100"
+            android:textColor="@color/XFrame_white" />
     </RelativeLayout>
 
 </me.sugarkawhi.bottomnavigationbar.BottomNavigationBar>

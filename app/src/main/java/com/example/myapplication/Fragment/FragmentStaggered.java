@@ -1,24 +1,19 @@
 package com.example.myapplication.Fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.example.myapplication.Activity.UserDetailsActivity;
+import com.example.myapplication.Activity.DubbingDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterStaggered;
 import com.example.myapplication.R;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -27,7 +22,6 @@ import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
-import com.youth.banner.loader.ImageLoader;
 
 public class FragmentStaggered extends Fragment {
     private static final String TAG = "FragmentStaggered----->";
@@ -60,7 +54,7 @@ public class FragmentStaggered extends Fragment {
             @Override
             public void OnClick(View v, int position) {
                 // TODO: 2019/3/25
-                Intent intent = new Intent(getContext(), UserDetailsActivity.class);
+                Intent intent = new Intent(getContext(), DubbingDetailsActivity.class);
                 startActivity(intent);
                 switch (v.getId()) {
                     case R.id.imageView_recycler_staggered:

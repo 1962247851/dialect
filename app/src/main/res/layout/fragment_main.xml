@@ -40,6 +40,7 @@
                     app:tl_textsize="20sp" />
 
                 <Button
+                    android:visibility="gone"
                     android:id="@+id/button_fragment_main_search"
                     android:layout_width="50dp"
                     android:layout_height="50dp"

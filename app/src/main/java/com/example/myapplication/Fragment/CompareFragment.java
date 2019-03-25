@@ -377,7 +377,7 @@ public class CompareFragment extends Fragment {
                 case R.id.button_fragment_compare_user_head:
                     // TODO: 2019/3/25
                     Log.e(TAG, "onClick: User Head");
-                    Intent intent = new Intent(getContext(), DubbingDetailsActivity.class);
+                    Intent intent = new Intent(getContext(), MySelfActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.button_fragment_compare_search:

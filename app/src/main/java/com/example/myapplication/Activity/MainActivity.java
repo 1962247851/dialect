@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.myapplication.Fragment.AuditionFragment;
 import com.example.myapplication.Fragment.CompareFragment;
@@ -16,6 +17,8 @@ import com.example.myapplication.Fragment.MainFragment;
 import com.example.myapplication.R;
 import com.example.myapplication.Util.GlobalUtil;
 import com.robinhood.ticker.TickerView;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment currentFragment;
     private BottomNavigationBar bottomNavigationBar;
     private DubbingFragment.IOnClickListener iOnClickListener;
+    private AuditionFragment.IAuditionListener iAuditionListener;
     private int pastPosition;
 
     @Override
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mEntities.add(new BottomNavigationEntity(
                 "比音",
                 R.drawable.icon_bifangyan,
-                R.drawable.icon_bifangyan, 100
+                R.drawable.icon_bifangyan
         ));
         bottomNavigationBar.setEntities(mEntities);
         bottomNavigationBar.setCurrentPosition(0);
@@ -115,6 +119,41 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, "onBnbItemDoubleClick: " + position);
             }
         });
+
+        iAuditionListener = new AuditionFragment.IAuditionListener() {
+            @Override
+            public void OnClick(View view) {
+                // TODO: 2019/3/25 与Activity传递消息时用,需在AuditionFragment调用此方法
+            }
+
+            @Override
+            public void OnStageChange(RefreshLayout refreshLayout, RefreshState oldState, RefreshState newState) {
+                switch (newState) {
+                    case Refreshing:
+//                        Handler handler = new Handler();
+//                        Runnable runnable = new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                refreshLayout.finishRefresh(true);
+//                            }
+//                        };
+//                        handler.postDelayed(runnable, 1000);
+                        refreshLayout.finishRefresh(1000, true);
+                        Toast.makeText(MainActivity.this, "刷新中", Toast.LENGTH_SHORT).show();
+                        break;
+                    case RefreshFinish:
+                        Toast.makeText(MainActivity.this, "刷新完成", Toast.LENGTH_SHORT).show();
+                        break;
+                    case Loading:
+                        refreshLayout.finishLoadMore(1000, true, true);
+                        Toast.makeText(MainActivity.this, "加载中", Toast.LENGTH_SHORT).show();
+                        break;
+                    case LoadFinish:
+                        Toast.makeText(MainActivity.this, "加载完成", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        };
 
         iOnClickListener = new DubbingFragment.IOnClickListener() {
             @Override
@@ -166,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
             case GlobalUtil.FRAGMENT_TAG.AUDITION:
                 fragment = fragmentManager.findFragmentByTag(currentFragmentTag);
                 if (fragment == null) {
-                    fragment = new AuditionFragment();
+                    fragment = new AuditionFragment(iAuditionListener);
                 }
                 break;
             case GlobalUtil.FRAGMENT_TAG.COMPARE:
@@ -178,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (currentFragment != fragment) {
             if (!fragment.isAdded()) {
-                fragmentManager.beginTransaction().hide(currentFragment).add(R.id.frameLayout_main, fragment,currentFragmentTag).commitAllowingStateLoss();
+                fragmentManager.beginTransaction().hide(currentFragment).add(R.id.frameLayout_main, fragment, currentFragmentTag).commitAllowingStateLoss();
             } else {
                 fragmentManager.beginTransaction().hide(currentFragment).show(fragment).commitAllowingStateLoss();
             }
