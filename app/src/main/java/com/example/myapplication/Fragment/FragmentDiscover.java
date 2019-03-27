@@ -26,9 +26,7 @@ import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -45,7 +43,7 @@ public class FragmentDiscover extends Fragment {
     private IDiscoverListeners iDiscoverListeners;
     private int intentType;
     private List<Integer> imageUrls = new ArrayList<Integer>();
-
+    private Intent intent = null;
 
     public FragmentDiscover() {
     }
@@ -74,16 +72,12 @@ public class FragmentDiscover extends Fragment {
         adapterDiscover = new MyAdapterDiscover(getContext(), new MyAdapterDiscover.IOnDiscoverClickListener() {
             @Override
             public void OnClick(View view) {
-                Intent intent = null;
                 switch (view.getId()) {
                     // TODO: 2019/3/12
-                    case R.id.imageButton_recycler_discover_user_head:
-                        intent = new Intent(getContext(), UserDetailsActivity.class);
-                        startActivity(intent);
-                        Log.e(TAG, "OnClick: user head");
+                    case R.id.roundedImageButton_recycler_discover_user_head:
+                        intentType = GlobalUtil.INTENT_TYPE_USER_DETAILS;
                         break;
                     case R.id.imageView_fragment_discover:
-                        // TODO: 2019/3/12 修改intentType
                         intentType = GlobalUtil.INTENT_TYPE_DUBBING_DETAILS;
                         break;
                     case R.id.textView_recycler_discover_title:
@@ -93,9 +87,7 @@ public class FragmentDiscover extends Fragment {
                         Log.e(TAG, "OnClick: type");
                         break;
                     case R.id.textView_recycler_discover_user_name:
-                        intent = new Intent(getContext(), UserDetailsActivity.class);
-                        startActivity(intent);
-                        Log.e(TAG, "OnClick: user name");
+                        intentType = GlobalUtil.INTENT_TYPE_USER_DETAILS;
                         break;
                     case R.id.textView_recycler_discover_date:
                         Log.e(TAG, "OnClick: date");
@@ -106,9 +98,11 @@ public class FragmentDiscover extends Fragment {
                 }
                 switch (intentType) {
                     case GlobalUtil.INTENT_TYPE_DUBBING_DETAILS:
-                        if (intent == null) {
-                            intent = new Intent(getContext(), DubbingDetailsActivity.class);
-                        }
+                        intent = new Intent(getContext(), DubbingDetailsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case GlobalUtil.INTENT_TYPE_USER_DETAILS:
+                        intent = new Intent(getContext(), DubbingDetailsActivity.class);
                         startActivity(intent);
                         break;
 

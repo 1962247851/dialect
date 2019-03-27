@@ -13,11 +13,11 @@
         android:orientation="vertical">
 
         <ImageView
+            android:adjustViewBounds="true"
             android:id="@+id/imageView_recycler_staggered"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:scaleType="fitCenter" />
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground" />
 
         <TextView
             android:id="@+id/textView_recycler_staggered_title"

@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.myapplication.Fragment.AuditionFragment;
@@ -43,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         initView();
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         initListener();
+        Toast.makeText(this, "欢迎回来,卿玖儿", Toast.LENGTH_SHORT).show();
     }
 
     private void initView() {
@@ -51,30 +51,31 @@ public class MainActivity extends AppCompatActivity {
         List<BottomNavigationEntity> mEntities = new ArrayList<>();
         mEntities.add(new BottomNavigationEntity(
                 "首页",
-                R.drawable.icon_home,
-                R.drawable.icon_home
+                R.drawable.ic_home_white,
+                R.drawable.ic_home_white
         ));
         mEntities.add(new BottomNavigationEntity(
                 "配音",
-                R.drawable.icon_dubibng,
-                R.drawable.icon_dubibng
+                R.drawable.ic_dubbing_white,
+                R.drawable.ic_dubbing_white
         ));
         mEntities.add(new BottomNavigationEntity(
-                R.drawable.icon_add,
-                R.drawable.icon_add
+                R.drawable.ic_add_white,
+                R.drawable.ic_add_white
         ));
         mEntities.add(new BottomNavigationEntity(
                 "听音",
-                R.drawable.icon_story,
-                R.drawable.icon_story
+                R.drawable.ic_audition_white,
+                R.drawable.ic_audition_white
         ));
         mEntities.add(new BottomNavigationEntity(
                 "比音",
-                R.drawable.icon_bifangyan,
-                R.drawable.icon_bifangyan
+                R.drawable.ic_compare_white,
+                R.drawable.ic_compare_white
         ));
         bottomNavigationBar.setEntities(mEntities);
         bottomNavigationBar.setCurrentPosition(0);
+        bottomNavigationBar.getChildAt(0).findViewById(R.id.bnb_item_text).setVisibility(View.INVISIBLE);
 
         MainFragment mainFragment = new MainFragment();
         fragmentManager = getSupportFragmentManager();
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationBar.setBnbItemSelectListener(new BottomNavigationBar.IBnbItemSelectListener() {
             @Override
             public void onBnbItemSelect(int position) {
+                bottomNavigationBar.getChildAt(position).findViewById(R.id.bnb_item_text).setVisibility(View.INVISIBLE);
                 switch (position) {
                     case 0:
                         switchFragment(GlobalUtil.FRAGMENT_TAG.MAIN);

@@ -6,10 +6,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ public class MySelfActivity extends AppCompatActivity {
     private static final String TAG = "MyselfActivity----->";
 
     private Toolbar toolbar;
-    private ImageView mIVUserHead;
+    private RoundedImageView mRIVUserHead;
     private TextView mTvUserName, mTvFanNum, mTvFollowNum, mTvFan, mTvFollow, mTvMessage, mTvStar, mTvAchievement, mTvPublish, mTvDraft, mTvSetting, mTvAboutUs;
 
     @Override
@@ -31,7 +31,7 @@ public class MySelfActivity extends AppCompatActivity {
 
     private void initListener() {
         MyOnClick myOnClick = new MyOnClick();
-        mIVUserHead.setOnClickListener(myOnClick);
+        mRIVUserHead.setOnClickListener(myOnClick);
         mTvFanNum.setOnClickListener(myOnClick);
         mTvFan.setOnClickListener(myOnClick);
         mTvFollowNum.setOnClickListener(myOnClick);
@@ -49,7 +49,7 @@ public class MySelfActivity extends AppCompatActivity {
     private void initView() {
         setContentView(R.layout.activity_my_self);
         toolbar = findViewById(R.id.toolBar_myself);
-        mIVUserHead = findViewById(R.id.imageView_myself_user_head);
+        mRIVUserHead = findViewById(R.id.roundedImageView_myself_user_head);
         mTvFanNum = findViewById(R.id.textView_myself_fan_num);
         mTvFan = findViewById(R.id.textView_myself_fan);
         mTvFollow = findViewById(R.id.textView_myself_follow);
@@ -80,7 +80,7 @@ public class MySelfActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 // TODO: 2019/3/12 重写点击事件
-                case R.id.imageView_myself_user_head:
+                case R.id.roundedImageView_myself_user_head:
                     Log.e(TAG, "onClick: user head");
                     break;
                 case R.id.textView_myself_user_name:

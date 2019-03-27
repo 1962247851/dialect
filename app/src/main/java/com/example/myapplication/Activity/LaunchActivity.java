@@ -37,7 +37,7 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void run() {
                 time -= 1000;
-                mBtnSkipAd.setText("跳过广告 " + time / 1000);
+                mBtnSkipAd.setText("跳过 " + time / 1000);
                 handler.sendEmptyMessage(0);
             }
         };

@@ -102,6 +102,10 @@ public class UserDetailsActivity extends AppCompatActivity {
             // TODO: 2019/3/16 判断chat activity是否已经打开
             if (needFinish) {
                 finish();
+
+                //下面两行应该修改
+                intent = new Intent(UserDetailsActivity.this, ChatActivity.class);
+                startActivity(intent);
             } else {
                 // TODO: 2019/3/16 根据点击的项目修改intent
                 intent = new Intent(UserDetailsActivity.this, ChatActivity.class);

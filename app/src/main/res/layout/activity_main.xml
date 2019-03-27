@@ -15,12 +15,13 @@
     <me.sugarkawhi.bottomnavigationbar.BottomNavigationBar
         android:id="@+id/navigationBar_main"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="@color/colorAccent"
-        app:bnb_anim="false"
+        app:bnb_anim="true"
         app:bnb_layoutId="@layout/bnb_item_badge"
-        app:bnb_selectedColor="@color/colorGrayText"
+        app:bnb_scale_ratio="1.3"
+        app:bnb_selectedColor="@color/XFrame_white"
         app:bnb_unSelectedColor="@color/XFrame_white" />
 
 </RelativeLayout>

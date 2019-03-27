@@ -17,10 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication.Activity.DubbingDetailsActivity;
 import com.example.myapplication.Activity.MySelfActivity;
 import com.example.myapplication.Activity.UserDetailsActivity;
 import com.example.myapplication.Adapter.RecyclerView.MyAdapterStaggered;
 import com.example.myapplication.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
@@ -41,11 +43,12 @@ public class AuditionFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private static final String TAG = "CompareFragment----->";
+    private static final String TAG = "AuditionFragment----->";
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button mBtnUserHead, mBtnSearch;
+    private RoundedImageView mRIVUserHead;
+    private Button mBtnSearch;
     private RecyclerView recyclerView;
     private EditText editText;
     private SmartRefreshLayout smartRefreshLayout;
@@ -100,19 +103,19 @@ public class AuditionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         recyclerView = view.findViewById(R.id.recyclerView_fragment_audition);
-        mBtnUserHead = view.findViewById(R.id.button_fragment_audition_user_head);
+        mRIVUserHead = view.findViewById(R.id.roundedImageView_fragment_audition_user_head);
         mBtnSearch = view.findViewById(R.id.button_fragment_audition_search);
         editText = view.findViewById(R.id.editText_fragment_audition_search_input);
         smartRefreshLayout = view.findViewById(R.id.smartRefreshLayout_fragment_audition);
         MyOnClick myOnClick = new MyOnClick();
         mBtnSearch.setOnClickListener(myOnClick);
-        mBtnUserHead.setOnClickListener(myOnClick);
+        mRIVUserHead.setOnClickListener(myOnClick);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(new MyAdapterStaggered(getContext(), new MyAdapterStaggered.IOnStaggeredClickListener() {
             @Override
             public void OnClick(View v, int position) {
                 // TODO: 2019/3/25
-                Intent intent = new Intent(getContext(), UserDetailsActivity.class);
+                Intent intent = new Intent(getContext(), DubbingDetailsActivity.class);
                 startActivity(intent);
                 switch (v.getId()) {
                     case R.id.imageView_recycler_staggered:
@@ -224,7 +227,7 @@ public class AuditionFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.button_fragment_audition_user_head:
+                case R.id.roundedImageView_fragment_audition_user_head:
                     // TODO: 2019/3/25
                     Log.e(TAG, "onClick: User Head");
                     Intent intent = new Intent(getContext(), MySelfActivity.class);

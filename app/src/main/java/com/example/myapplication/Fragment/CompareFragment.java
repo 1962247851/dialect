@@ -16,11 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.myapplication.Activity.DubbingDetailsActivity;
 import com.example.myapplication.Activity.MySelfActivity;
 import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapterCompare;
 import com.example.myapplication.R;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 
@@ -46,7 +46,8 @@ public class CompareFragment extends Fragment {
     private String mParam2;
     private ViewPager viewPager;
     private SlidingTabLayout slidingTabLayout;
-    private Button mBtnUserHead, mBtnSearch;
+    private Button mBtnSearch;
+    private RoundedImageView mRIVUserHead;
     private EditText editText;
     private List<Fragment> fragments = new ArrayList<Fragment>();
     private OnFragmentInteractionListener mListener;
@@ -101,12 +102,12 @@ public class CompareFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         viewPager = view.findViewById(R.id.viewPager_fragment_compare);
         slidingTabLayout = view.findViewById(R.id.tabLayout_fragment_compare);
-        mBtnUserHead = view.findViewById(R.id.button_fragment_compare_user_head);
+        mRIVUserHead = view.findViewById(R.id.roundedImageView_fragment_compare_user_head);
         mBtnSearch = view.findViewById(R.id.button_fragment_compare_search);
         editText = view.findViewById(R.id.editText_fragment_compare_search_input);
         MyOnClick myOnClick = new MyOnClick();
         mBtnSearch.setOnClickListener(myOnClick);
-        mBtnUserHead.setOnClickListener(myOnClick);
+        mRIVUserHead.setOnClickListener(myOnClick);
         //设置fragment的监听器
         FragmentStaggeredNewest.IStaggeredListeners iStaggeredListeners1 = new FragmentStaggeredNewest.IStaggeredListeners() {
             @Override
@@ -374,7 +375,7 @@ public class CompareFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.button_fragment_compare_user_head:
+                case R.id.roundedImageView_fragment_compare_user_head:
                     // TODO: 2019/3/25
                     Log.e(TAG, "onClick: User Head");
                     Intent intent = new Intent(getContext(), MySelfActivity.class);

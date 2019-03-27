@@ -24,7 +24,7 @@ import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
 
 public class FragmentStaggeredMovie extends Fragment {
-    private static final String TAG = "FragmentStaggered----->";
+    private static final String TAG = "FragmentStaggeredMovie----->";
     private RecyclerView mRV;
     private SmartRefreshLayout mSRL;
     private MyAdapterStaggered adapterStaggered;

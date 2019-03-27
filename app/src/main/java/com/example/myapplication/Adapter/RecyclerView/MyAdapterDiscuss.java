@@ -11,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Util.GlobalUtil;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 
@@ -18,12 +20,18 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
 
     private Context context;
     private IOnDiscussClickListener iOnDiscussClickListener;
+    private Boolean isDiscuss = true;
+
+    public MyAdapterDiscuss(Context context, IOnDiscussClickListener i, Boolean isDiscuss) {
+        this.context = context;
+        this.iOnDiscussClickListener = i;
+        this.isDiscuss = isDiscuss;
+    }
 
     public MyAdapterDiscuss(Context context, IOnDiscussClickListener i) {
         this.context = context;
         this.iOnDiscussClickListener = i;
     }
-
 
     @NonNull
     @Override
@@ -54,7 +62,7 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
 
             }
         };
-        viewHolder.mIBUserHead.setOnClickListener(onClickListener);
+        viewHolder.mRIVUserHead.setOnClickListener(onClickListener);
         viewHolder.mIBGood.setOnClickListener(onClickListener);
         viewHolder.mTvUserName.setOnClickListener(onClickListener);
         viewHolder.mTvUserComment.setOnClickListener(onClickListener);
@@ -63,11 +71,35 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
         viewHolder.mCV.setOnClickListener(onClickListener);
 
         viewHolder.mTVGoodNum.setText(i + "");
+        viewHolder.mTvUserName.setText(GlobalUtil.USER_NAMES[4 - i]);
+        if (isDiscuss) {
+            viewHolder.mTvUserComment.setText(GlobalUtil.USER_COMMENTS_DISCUSS[i]);
+        } else {
+            viewHolder.mTvUserComment.setText(GlobalUtil.USER_COMMENTS[i]);
+        }
+        switch (i) {
+            case 0:
+                viewHolder.mRIVUserHead.setImageResource(R.drawable.userhead1);
+                break;
+            case 1:
+                viewHolder.mRIVUserHead.setImageResource(R.drawable.userhead2);
+                break;
+            case 2:
+                viewHolder.mRIVUserHead.setImageResource(R.drawable.userhead3);
+                break;
+            case 3:
+                viewHolder.mRIVUserHead.setImageResource(R.drawable.userhead4);
+                break;
+            case 4:
+                viewHolder.mRIVUserHead.setImageResource(R.drawable.userhead5);
+                break;
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageButton mIBUserHead, mIBGood;
+        private ImageButton mIBGood;
+        private RoundedImageView mRIVUserHead;
         private TextView mTvUserName, mTvUserComment;
         private TickerView mTVGoodNum;
         private CardView mCV;
@@ -75,7 +107,7 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mIBUserHead = itemView.findViewById(R.id.imageButton_recycler_discuss_user_head);
+            mRIVUserHead = itemView.findViewById(R.id.roundedImageButton_recycler_discuss_user_head);
             mIBGood = itemView.findViewById(R.id.imageButton_recycler_discuss_good);
             mTvUserName = itemView.findViewById(R.id.textView_recycler_discuss_title);
             mTvUserComment = itemView.findViewById(R.id.textView_recycler_discuss_user_comment);
@@ -87,7 +119,7 @@ public class MyAdapterDiscuss extends RecyclerView.Adapter<MyAdapterDiscuss.View
     //总共的评论数
     @Override
     public int getItemCount() {
-        return 10;
+        return 5;
     }
 
     public interface IOnDiscussClickListener {

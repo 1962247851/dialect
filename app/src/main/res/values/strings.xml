@@ -7,6 +7,10 @@
     <string name="title_compare">比音</string>
     <string name="title_fragment_discuss_title">大城市乡音何在</string>
     <string name="title_fragment_discuss_content">快速发展的北上广,是否还有这座城市独有的乡音</string>
+    <string name="default_username">卿玖儿</string>
+    <string name="default_username_dubbing_details">啊嚏uu</string>
+    <string name="default_user_miaoshu_dubbing_details">热爱生活的广东人</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

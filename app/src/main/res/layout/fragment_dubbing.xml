@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="5dp"
     tools:context=".Fragment.DubbingFragment">
 
     <RelativeLayout
@@ -33,6 +34,7 @@
                 android:paddingEnd="40dp">
 
                 <ImageButton
+                    android:background="@drawable/ic_clock_gray"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:tooltipText="倒计时" />
@@ -69,12 +71,14 @@
             android:gravity="center">
 
             <ImageButton
+                android:background="@drawable/ic_restart_gray"
                 android:id="@+id/imageButton_dubbing_restart"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:tooltipText="重新开始" />
 
             <ImageButton
+                android:background="@drawable/ic_start"
                 android:id="@+id/imageButton_dubbing_start"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -83,6 +87,7 @@
                 android:tooltipText="开始" />
 
             <ImageButton
+                android:background="@drawable/ic_finish_gray"
                 android:id="@+id/imageButton_dubbing_finish"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

@@ -61,7 +61,7 @@ public class FragmentDiscuss extends Fragment {
                 Intent intent = null;
                 switch (view.getId()) {
                     // TODO: 2019/3/12  
-                    case R.id.imageButton_recycler_discuss_user_head:
+                    case R.id.roundedImageButton_recycler_discuss_user_head:
                         Log.e(TAG, "OnClick: user head");
                         intent = new Intent(getContext(), UserDetailsActivity.class);
                         startActivity(intent);

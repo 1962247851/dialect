@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Util.GlobalUtil;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 
@@ -61,7 +63,7 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
                 }
             }
         };
-        viewHolder.mIBUserHead.setOnClickListener(onClickListener);
+        viewHolder.roundedImageView.setOnClickListener(onClickListener);
         viewHolder.mIBComment.setOnClickListener(onClickListener);
         viewHolder.mIBGood.setOnClickListener(onClickListener);
         viewHolder.mIBShare.setOnClickListener(onClickListener);
@@ -73,11 +75,36 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
         viewHolder.mIV.setOnClickListener(onClickListener);
 
         viewHolder.mTVGoodNum.setText(i+"");
+        viewHolder.mTvUserName.setText(GlobalUtil.USER_NAMES[i]);
+        viewHolder.mTvContent.setText(GlobalUtil.TITLES[4-i]);
+        switch (i) {
+            case 0:
+                viewHolder.roundedImageView.setImageResource(R.drawable.userhead1);
+                viewHolder.mIV.setImageResource(R.drawable.cover1);
+                break;
+            case 1:
+                viewHolder.roundedImageView.setImageResource(R.drawable.userhead2);
+                viewHolder.mIV.setImageResource(R.drawable.cover2);
+                break;
+            case 2:
+                viewHolder.roundedImageView.setImageResource(R.drawable.userhead3);
+                viewHolder.mIV.setImageResource(R.drawable.cover3);
+                break;
+            case 3:
+                viewHolder.roundedImageView.setImageResource(R.drawable.userhead4);
+                viewHolder.mIV.setImageResource(R.drawable.cover4);
+                break;
+            case 4:
+                viewHolder.roundedImageView.setImageResource(R.drawable.userhead5);
+                viewHolder.mIV.setImageResource(R.drawable.cover5);
+                break;
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageButton mIBUserHead, mIBComment, mIBGood, mIBShare;
+        private ImageButton  mIBComment, mIBGood, mIBShare;
+        private RoundedImageView roundedImageView;
         private TextView mTvUserName, mTvContent, mTvCommentNum;
         private TickerView mTVGoodNum;
         private ImageView mIV;
@@ -86,7 +113,7 @@ public class MyAdapterDynamic extends RecyclerView.Adapter<MyAdapterDynamic.View
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mIBUserHead = itemView.findViewById(R.id.imageButton_recycler_dynamic_user_head);
+            roundedImageView = itemView.findViewById(R.id.roundedImageView_recycler_dynamic_user_head);
             mIBComment = itemView.findViewById(R.id.imageButton_recycler_dynamic_comment);
             mIBGood = itemView.findViewById(R.id.imageButton_recycler_dynamic_good);
             mIBShare = itemView.findViewById(R.id.imageButton_recycler_dynamic_share);

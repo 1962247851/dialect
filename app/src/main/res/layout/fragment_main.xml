@@ -18,21 +18,28 @@
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true">
 
-                <Button
-                    android:id="@+id/button_fragment_main_user_head"
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/roundedImageView_fragment_main_user_head"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
-                    android:background="@drawable/circle_background"
-                    android:tooltipText="我" />
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/userhead0"
+                    android:tooltipText="我"
+                    app:riv_border_color="@color/colorGrayText"
+                    app:riv_border_width="0.5dp"
+                    app:riv_corner_radius="30dp"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="true"
+                    app:riv_tile_mode="repeat" />
 
 
                 <com.flyco.tablayout.SlidingTabLayout
                     android:id="@+id/tabLayout_main"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignTop="@id/button_fragment_main_user_head"
-                    android:layout_alignBottom="@id/button_fragment_main_user_head"
+                    android:layout_alignTop="@id/roundedImageView_fragment_main_user_head"
+                    android:layout_alignBottom="@id/roundedImageView_fragment_main_user_head"
                     android:layout_centerInParent="true"
                     android:layout_centerHorizontal="true"
                     app:tl_indicator_width_equal_title="true"
@@ -40,15 +47,15 @@
                     app:tl_textsize="20sp" />
 
                 <Button
-                    android:visibility="gone"
                     android:id="@+id/button_fragment_main_search"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignTop="@id/tabLayout_main"
                     android:layout_alignBottom="@id/tabLayout_main"
                     android:layout_alignParentEnd="true"
-                    android:background="@drawable/icon_search"
-                    android:tooltipText="搜索" />
+                    android:background="@drawable/ic_search_white"
+                    android:tooltipText="搜索"
+                    android:visibility="gone" />
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
 

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Util.GlobalUtil;
 
 public class MyAdapterStaggered extends RecyclerView.Adapter<MyAdapterStaggered.ViewHolder> {
 
@@ -39,10 +40,38 @@ public class MyAdapterStaggered extends RecyclerView.Adapter<MyAdapterStaggered.
         viewHolder.mIVUserHead.setOnClickListener(onClickListener);
         viewHolder.mTvTitle.setOnClickListener(onClickListener);
         viewHolder.cardView.setOnClickListener(onClickListener);
-        if (i%2==0){
-            viewHolder.mIVUserHead.setImageResource(R.drawable.banner1);
-        }else {
-            viewHolder.mIVUserHead.setImageResource(R.drawable.adapter_loading_error);
+        viewHolder.mTvTitle.setText(GlobalUtil.TITLES[i]);
+        switch (i){
+            case 0:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover1);
+                break;
+            case 1:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover2);
+                break;
+            case 2:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover3);
+                break;
+            case 3:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover4);
+                break;
+            case 4:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover5);
+                break;
+            case 5:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover6);
+                break;
+            case 6:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover7);
+                break;
+            case 7:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover8);
+                break;
+            case 8:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover9);
+                break;
+            case 9:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.cover10);
+                break;
         }
     }
 
@@ -64,7 +93,7 @@ public class MyAdapterStaggered extends RecyclerView.Adapter<MyAdapterStaggered.
 
     @Override
     public int getItemCount() {
-        return 30;
+        return 10;
     }
 
     public interface IOnStaggeredClickListener {

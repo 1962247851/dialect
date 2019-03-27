@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,31 +6,105 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ChatActivity">
 
-    <ScrollView
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:popupTheme="@style/AppThemeNoActionBar.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/smartRefreshLayout_chat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_above="@+id/relativeLayout_send"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <android.support.design.widget.AppBarLayout
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" />
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_chat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fitsSystemWindows="true"
-                    android:paddingTop="20dp"
-                    app:popupTheme="@style/AppThemeNoActionBar.PopupOverlay" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView_chat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                tools:listitem="@android:layout/simple_list_item_checked" />
 
-            </android.support.design.widget.AppBarLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-            <include layout="@layout/content_chat" />
-        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
 
-    </ScrollView>
+            <ImageButton
+                android:id="@+id/imageButton_chat_more"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_above="@id/linearLayout_chat_more"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/icon_add"
+                android:tooltipText="更多" />
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_alignTop="@id/imageButton_chat_more"
+                android:layout_alignBottom="@id/imageButton_chat_more"
+                android:id="@+id/editText_chat_input_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/imageButton_chat_send"
+                android:layout_toEndOf="@id/imageButton_chat_more"
+                android:inputType="text"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/imageButton_chat_send"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@id/imageButton_chat_more"
+                android:layout_alignBottom="@id/imageButton_chat_more"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_send"
+                android:tooltipText="发送" />
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:id="@+id/linearLayout_chat_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+                <ImageButton
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>

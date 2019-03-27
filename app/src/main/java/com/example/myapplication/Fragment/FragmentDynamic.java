@@ -27,9 +27,7 @@ import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -77,7 +75,7 @@ public class FragmentDynamic extends Fragment {
             public void OnClick(View view) {
                 switch (view.getId()) {
                     // TODO: 2019/3/12 重写点击事件
-                    case R.id.imageButton_recycler_dynamic_user_head:
+                    case R.id.roundedImageView_recycler_dynamic_user_head:
                         intentType = GlobalUtil.INTENT_TYPE_USER_DETAILS;
                         break;
                     case R.id.textView_recycler_dynamic_user_name:
@@ -125,7 +123,7 @@ public class FragmentDynamic extends Fragment {
             @Override
             public void OnClick(View v, int position) {
                 // TODO: 2019/3/18
-                Intent intent = new Intent(getContext(),UserDetailsActivity.class);
+                Intent intent = new Intent(getContext(), UserDetailsActivity.class);
                 startActivity(intent);
                 Log.e(TAG, "OnClick: user head " + position);
             }

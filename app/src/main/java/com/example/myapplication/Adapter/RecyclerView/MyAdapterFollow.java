@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.myapplication.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 public class MyAdapterFollow extends RecyclerView.Adapter<MyAdapterFollow.ViewHolder> {
 
@@ -35,23 +36,40 @@ public class MyAdapterFollow extends RecyclerView.Adapter<MyAdapterFollow.ViewHo
             }
         };
         viewHolder.mIVUserHead.setOnClickListener(onClickListener);
+        switch (i) {
+            case 0:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.userhead5);
+                break;
+            case 1:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.userhead3);
+                break;
+            case 2:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.userhead2);
+                break;
+            case 3:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.userhead1);
+                break;
+            case 4:
+                viewHolder.mIVUserHead.setImageResource(R.drawable.userhead4);
+                break;
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mIVUserHead;
+        private RoundedImageView mIVUserHead;
         private View mVNew;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mIVUserHead = itemView.findViewById(R.id.imageView_recycler_follow_user_head);
+            mIVUserHead = itemView.findViewById(R.id.roundedImageView_recycler_follow_user_head);
             mVNew = itemView.findViewById(R.id.view_recycler_follow_new);
         }
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 5;
     }
 
     public interface IOnFollowClickListener {

@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:adjustViewBounds="true"
             android:id="@+id/imageView_recycler_staggered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView_recycler_view_discuss"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:id="@+id/cardView_recycler_view_discuss"
     android:foreground="?android:attr/selectableItemBackground">
 
     <RelativeLayout
@@ -11,14 +12,22 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <ImageButton
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/circle_background"
-            android:id="@+id/imageButton_recycler_discuss_user_head"
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/roundedImageButton_recycler_discuss_user_head"
+            app:riv_border_color="@color/XFrame_darker_gray"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="30dp"
+            app:riv_mutate_background="true"
+            app:riv_oval="true"
+            app:riv_tile_mode="repeat"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentStart="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/userhead1" />
 
         <LinearLayout
             android:id="@+id/linearLayout_recycler_discuss"
@@ -26,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/imageButton_recycler_discuss_good"
-            android:layout_toEndOf="@+id/imageButton_recycler_discuss_user_head"
+            android:layout_toEndOf="@+id/roundedImageButton_recycler_discuss_user_head"
             android:orientation="vertical">
 
             <TextView
@@ -39,16 +48,17 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:foreground="?android:attr/selectableItemBackground"
                 android:id="@+id/textView_recycler_discuss_user_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:maxLines="2"
                 android:text="评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论" />
         </LinearLayout>
 
         <ImageButton
+            android:background="@drawable/ic_good_gray"
             android:id="@+id/imageButton_recycler_discuss_good"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -56,6 +66,7 @@
             android:layout_toStartOf="@id/tickerView_recycler_discuss_good_num" />
 
         <com.robinhood.ticker.TickerView
+            android:layout_marginStart="2dp"
             android:id="@+id/tickerView_recycler_discuss_good_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

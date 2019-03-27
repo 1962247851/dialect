@@ -19,6 +19,7 @@ import com.example.myapplication.Activity.MySelfActivity;
 import com.example.myapplication.Adapter.ViewPager.MyFragmentPagerAdapterHome;
 import com.example.myapplication.R;
 import com.flyco.tablayout.SlidingTabLayout;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.RefreshState;
 import com.youth.xframe.XFrame;
@@ -43,8 +44,8 @@ public class MainFragment extends Fragment {
     private List<Fragment> fragments = new ArrayList<>();
     private ViewPager mVP;
     private MyFragmentPagerAdapterHome pagerAdapter;
-    private Button mBtnUserHead, mBtnSearch;
     private IOnClickListener iOnClickListener;
+    private RoundedImageView  roundedImageView;
 
 
     // TODO: Rename and change types of parameters
@@ -98,8 +99,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        mBtnUserHead = view.findViewById(R.id.button_fragment_main_user_head);
-        mBtnSearch = view.findViewById(R.id.button_fragment_main_search);
+        roundedImageView = view.findViewById(R.id.roundedImageView_fragment_main_user_head);
         mTL = view.findViewById(R.id.tabLayout_main);
         mVP = view.findViewById(R.id.viewPager_main);
         //设置三个Fragment的接口
@@ -251,15 +251,14 @@ public class MainFragment extends Fragment {
         mVP.setAdapter(pagerAdapter);
         mTL.setViewPager(mVP);
         MyOnClick myOnClick = new MyOnClick();
-        mBtnUserHead.setOnClickListener(myOnClick);
-        mBtnSearch.setOnClickListener(myOnClick);
+        roundedImageView.setOnClickListener(myOnClick);
     }
 
     private class MyOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.button_fragment_main_user_head:
+                case R.id.roundedImageView_fragment_main_user_head:
                     // TODO: 2019/3/11
                     Log.e(TAG, "onClick: User Head");
                     Intent intent = new Intent(getContext(), MySelfActivity.class);

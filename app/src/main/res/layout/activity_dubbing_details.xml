@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
-        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:paddingTop="20dp">
 
 
         <RelativeLayout
@@ -17,20 +17,20 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:background="@drawable/ic_arrow_back"
                 android:id="@+id/imageButton_dubbing_details_back"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/ic_arrow_back"
                 android:tooltipText="返回" />
 
             <LinearLayout
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="20dp"
                 android:layout_toStartOf="@id/linearLayout_dubbing_top_right"
                 android:gravity="end"
                 android:orientation="vertical">
@@ -40,18 +40,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="用户名"
+                    android:text="@string/default_username_dubbing_details"
                     android:textColor="@color/XFrame_white" />
 
                 <TextView
+                    android:gravity="end"
                     android:id="@+id/textVIew_dubbing_details_user_describe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="marquee"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:singleLine="true"
-                    android:text="用户描述用户描述用户描述用户描述用户描述用户描述用户描述用户描述用户描述用户描述用户描述用户描述"
-                    android:textColor="@color/XFrame_white" />
+                    android:text="@string/default_user_miaoshu_dubbing_details"
+                    android:textColor="#EEEEEE" />
             </LinearLayout>
 
             <LinearLayout
@@ -64,23 +65,37 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imageView_dubbing_details_user_head"
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/roundedImageView_dubbing_details_user_head"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@color/XFrame_white" />
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/userhead1"
+                    app:riv_border_color="@color/XFrame_darker_gray"
+                    app:riv_border_width="0.5dp"
+                    app:riv_corner_radius="30dp"
+                    app:riv_mutate_background="true"
+                    app:riv_oval="true"
+                    app:riv_tile_mode="repeat" />
 
-                <ImageButton
-                    android:id="@+id/imageButton_dubbing_details_follow"
+                <TextView
+                    android:id="@+id/textView_dubbing_details_follow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:tooltipText="关注" />
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/background_edit_text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="关注"
+                    android:textColor="@color/colorGrayText" />
             </LinearLayout>
         </RelativeLayout>
     </android.support.design.widget.AppBarLayout>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/smartRefreshLayout_dubbing_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -117,18 +132,21 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:paddingTop="5dp">
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="30dp"
+                                android:gravity="center"
                                 android:orientation="vertical">
 
                                 <ImageButton
                                     android:id="@+id/imageButton_dubbing_details_good"
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
+                                    android:background="@drawable/ic_good_white"
                                     android:tooltipText="点赞" />
 
                                 <TextView
@@ -140,19 +158,20 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="30dp"
+                                android:gravity="center"
                                 android:orientation="vertical">
 
                                 <ImageButton
                                     android:id="@+id/imageButton_dubbing_details_comment"
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
+                                    android:background="@drawable/ic_comment_white"
                                     android:tooltipText="评论" />
 
                                 <TextView
-
                                     android:id="@+id/textView_dubbing_details_comment_num"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -161,15 +180,17 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="30dp"
+                                android:gravity="center"
                                 android:orientation="vertical">
 
                                 <ImageButton
                                     android:id="@+id/imageButton_dubbing_details_star"
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
+                                    android:background="@drawable/ic_star_white"
                                     android:tooltipText="收藏" />
 
                                 <TextView
@@ -181,14 +202,16 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:orientation="vertical">
 
                                 <ImageButton
                                     android:id="@+id/imageButton_dubbing_details_share"
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
+                                    android:background="@drawable/ic_share_white"
                                     android:tooltipText="分享" />
 
                                 <TextView
